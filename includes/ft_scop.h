@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 11:19:46 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/04/24 16:50:39 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/04/24 23:02:05 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,13 @@
 # define FT_SCOP
 
 # include <libft.h>
-# include <OpenGL/gl3.h>
-# define GLFW_INCLUDE_NONE
+
+# ifdef OSX
+#  include <OpenGL/gl3.h>
+#  define GLFW_INCLUDE_NONE
+# endif
 # include <GLFW/glfw3.h>
+
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>

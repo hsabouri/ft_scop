@@ -6,7 +6,7 @@
 #    By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/11 11:06:31 by hsabouri          #+#    #+#              #
-#    Updated: 2018/04/24 11:04:34 by hsabouri         ###   ########.fr        #
+#    Updated: 2018/04/25 00:06:25 by hsabouri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,18 @@ CFLAGS = -Wall -Wextra -DNON_COMPLETE
 CFLAGS += -g
 CFLAGS += -I$(LIBFTINC) -I$(LIBGLFWINC) -I$(INCDIR)
 
-LDFLAGS += -L$(LIBFTDIR) -lft -L$(LIBGLFWDIR) -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit -framework CoreVideo
+
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S),Linux)
+CCFLAGS += -D LINUX
+LDFLAGS += -lm -ldl -lX11 -lXext -lGL -lpthread
+endif
+ifeq ($(UNAME_S),Darwin)
+CCFLAGS += -D OSX
+LDFLAGS += -framework Cocoa -framework OpenGL -framework IOKit -framework CoreVideo
+endif
+
+LDFLAGS += -L$(LIBFTDIR) -lft -L$(LIBGLFWDIR) -lglfw3 
 
 all: libs $(NAME)
 

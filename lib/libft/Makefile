@@ -6,7 +6,7 @@
 #    By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/08/19 10:32:42 by hsabouri          #+#    #+#              #
-#    Updated: 2018/04/11 10:52:36 by hsabouri         ###   ########.fr        #
+#    Updated: 2018/04/24 22:53:23 by hsabouri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,6 @@ INCLUDES = ./includes
 CFLAGS = -Wall -Werror -Wextra
 CFLAGS += -g
 LDFLAGS = 
-CC = clang
 
 SRCDIR = sources
 OBJDIR = objs
@@ -30,7 +29,6 @@ SRCNAM	= ft_atoi.c\
 		  ft_isdigit.c\
 		  ft_isprint.c\
 		  ft_isspace.c\
-		  ft_itoa.c\
 		  ft_lstnew.c\
 		  ft_memalloc.c\
 		  ft_memccpy.c\

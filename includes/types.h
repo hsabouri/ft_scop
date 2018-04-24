@@ -6,15 +6,17 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 16:48:30 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/04/24 17:39:07 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/04/24 23:01:52 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef  TYPES
 # define TYPES
 
-# include <OpenGL/gl3.h>
-# define GLFW_INCLUDE_NONE
+# ifdef OSX
+#  include <OpenGL/gl3.h>
+#  define GLFW_INCLUDE_NONE
+# endif
 # include <GLFW/glfw3.h>
 
 typedef struct	s_tex2
