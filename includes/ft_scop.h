@@ -6,14 +6,12 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 11:19:46 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/04/24 23:02:05 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/04/25 18:06:21 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef  FT_SCOP
 # define FT_SCOP
-
-# include <libft.h>
 
 # ifdef OSX
 #  include <OpenGL/gl3.h>

@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 19:18:33 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/04/24 17:39:31 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/04/25 19:16:26 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,30 +21,30 @@
 # include "libft.h"
 # include "types.h"
 
-# define ALLOC_SIZE 2048
+# define ALLOC_SIZE 1
 
 typedef struct	s_vertices
 {
-	t_vertex		*content;
 	unsigned int	global;
 	unsigned int	group;
 	unsigned int	obj;
+	t_vertex		*content;
 }				t_vertices;
 
 typedef struct	s_tex_coord
 {
-	t_tex2			*content;
 	unsigned int	global;
 	unsigned int	group;
 	unsigned int	obj;
+	t_tex2			*content;
 }				t_tex_coord;
 
 typedef struct	s_normals
 {
-	t_vec4			*content;
 	unsigned int	global;
 	unsigned int	group;
 	unsigned int	obj;
+	t_vec4			*content;
 }				t_normals;
 
 typedef struct	s_tris
@@ -57,8 +57,12 @@ typedef struct	s_parsed
 {
 	t_tris		tris;
 	t_vertices	vertices;
+	size_t		offset;
 }				t_parsed;
 
 void			parse(char *path);
+t_tri			*parse_tri(const char *line, t_parsed *parsed);
+t_vec4			parse_vec4(const char *line);
+size_t			jump(const char *line);
 
 #endif

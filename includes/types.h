@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 16:48:30 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/04/24 23:01:52 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/04/25 19:32:43 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ typedef struct	s_vertex
 
 typedef struct	s_tri
 {
-	t_vec4	a;
-	t_vec4	b;
-	t_vec4	c;
+	int a;
+	int b;
+	int c;
 }				t_tri;
 
 #endif

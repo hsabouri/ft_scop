@@ -6,7 +6,7 @@
 #    By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/08/19 10:32:42 by hsabouri          #+#    #+#              #
-#    Updated: 2018/04/24 22:53:23 by hsabouri         ###   ########.fr        #
+#    Updated: 2018/04/25 15:33:20 by hsabouri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRCDIR = sources
 OBJDIR = objs
 INCDIR = includes
 SRCNAM	= ft_atoi.c\
+		  ft_atof.c\
 		  ft_bzero.c\
 		  ft_isalnum.c\
 		  ft_isalpha.c\
