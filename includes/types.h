@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 16:48:30 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/04/25 19:32:43 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/04/26 19:50:45 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,26 @@ typedef struct	s_color
 	GLfloat a;
 }				t_color;
 
-typedef struct	s_vertex
+typedef struct	s_quad
 {
-	t_vec4	pos;
-	t_color	col;
-}				t_vertex;
+	size_t a;
+	size_t b;
+	size_t c;
+	size_t d;
+}				t_quad;
 
 typedef struct	s_tri
 {
-	int a;
-	int b;
-	int c;
+	size_t	a;
+	size_t	b;
+	size_t	c;
+	t_color	col;
 }				t_tri;
+
+typedef struct	s_tris
+{
+	t_tri		*tris;
+	size_t		size;
+}				t_tris;
 
 #endif
