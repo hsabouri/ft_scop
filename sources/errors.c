@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 13:58:05 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/04/27 14:44:18 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/04/27 16:03:24 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void			set_error_callbacks(void)
 
 int				error(const char *error_type, const char *to_display)
 {
-	printf("\x1b[31m%s\x1b[0m: %s", error_type, to_display);
+	printf("\x1b[31m%s\x1b[0m: %s\n", error_type, to_display);
 	exit(EXIT_FAILURE);
 	return (0);
 }

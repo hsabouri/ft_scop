@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 11:22:10 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/04/24 11:05:35 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/04/27 18:55:19 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,16 @@ void	update(GLFWwindow *win, GLuint program)
 
 int main(int ac, char **av)
 {
+	t_parsed	parsed;
+	t_triangles	iba;
+
 	if (ac >= 2)
-		parse(av[1]);
+		parsed = parse(av[1]);
+	else
+		error("usage", "ft_scop file.obj");
+	verify(&parsed);
+	iba = triangulate(&parsed);
+	assign_color(&iba);
 	/*
 	GLFWwindow	*win;
 	GLuint		vbo;

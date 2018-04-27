@@ -6,7 +6,7 @@
 #    By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/11 11:06:31 by hsabouri          #+#    #+#              #
-#    Updated: 2018/04/27 14:59:42 by hsabouri         ###   ########.fr        #
+#    Updated: 2018/04/27 16:47:18 by hsabouri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,9 @@ SRCNAM= main.c\
 		callbacks.c\
 		init.c\
 		parser.c\
-		parsing_functions.c
+		parsing_functions.c\
+		verifications.c\
+		post_process.c
 INCNAM= ft_scop.h\
 		parser.h
 

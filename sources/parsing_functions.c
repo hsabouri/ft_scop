@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/27 13:27:39 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/04/27 14:53:17 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/04/27 15:51:51 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ t_quad	parse_quad(const char *line, size_t linec)
 	while (current)
 	{
 		res_c[count] = atoi(current) - 1;
+		if (res_c[count] < 0)
+			error_line(linec, "PARSER", "Face has invalid index.");
 		count++;
 		current = strtok(NULL, " ");
 	}

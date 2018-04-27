@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 19:18:33 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/04/27 14:38:41 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/04/27 16:57:02 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,17 @@
 
 # define ALLOC_SIZE 1
 
-typedef struct	s_vertices
-{
-	t_vec4		*content;
-	size_t		size;
-}				t_vertices;
-
 typedef struct	s_quads
 {
 	t_quad		*content;
 	size_t		size;
 }				t_quads;
+
+typedef struct	s_vertices
+{
+	t_vec4		*content;
+	size_t		size;
+}				t_vertices;
 
 typedef struct	s_parsed
 {
@@ -42,7 +42,8 @@ typedef struct	s_parsed
 	t_vertices	vertices;
 }				t_parsed;
 
-void			parse(char *path);
+t_parsed		parse(char *path);
+void			verify(t_parsed *parsed);
 t_vec4			parse_vec4(const char *line, size_t	linec);
 t_quad			parse_quad(const char *line, size_t	linec);
 

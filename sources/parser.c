@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 10:35:42 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/04/27 14:48:33 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/04/27 18:27:41 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void		tokens(const char *line, t_parsed *parsed, size_t linec)
 	}
 }
 
-void		parse(char *path)
+t_parsed		parse(char *path)
 {
 	int			fd;
 	t_parsed	parsed;
@@ -75,12 +75,12 @@ void		parse(char *path)
 		error("SYSTEM", "Can't allocate memory, verify ALLOC_SIZE.");
 	parsed.quads.size = 0;
 	parsed.vertices.size = 0;
-	linec = 0;
+	linec = 1;
 	while (get_next_line(fd, &line) > 0)
 	{
 		index = jump(line);
 		tokens(line + index, &parsed, linec);
 		linec++;
 	}
-	printf("vertices : %zu | faces : %zu", parsed.vertices.size, parsed.quads.size);
+	return (parsed);
 }
