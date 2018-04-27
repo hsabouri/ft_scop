@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 19:18:33 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/04/26 19:50:42 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/04/27 14:38:41 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,7 @@ typedef struct	s_parsed
 }				t_parsed;
 
 void			parse(char *path);
+t_vec4			parse_vec4(const char *line, size_t	linec);
+t_quad			parse_quad(const char *line, size_t	linec);
 
 #endif

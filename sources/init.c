@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 11:08:53 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/04/23 14:28:35 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/04/27 13:00:56 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ GLuint	init_program(void)
 }
 
 void	init_buffers(GLuint *vbo) {
+	/*
 	t_vertex	vertices[6] = {
 		{{-0.5f, 0.5f, 0.0f, 1.0f}, {0.0f, 0.0f, 1.0f, 1.0f}},
 		{{0.5f, 0.5f, 0.0f, 1.0f}, {1.0f, 0.0f, 0.0f, 1.0f}},
@@ -117,4 +118,5 @@ void	init_buffers(GLuint *vbo) {
 	err = glGetError();
 	if (err != GL_NO_ERROR)
 		error("OPENGL", "Could not create VBO");
+	*/
 }

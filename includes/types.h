@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 16:48:30 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/04/26 19:50:45 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/04/27 14:38:43 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,17 @@ typedef struct	s_color
 
 typedef struct	s_quad
 {
-	size_t a;
-	size_t b;
-	size_t c;
-	size_t d;
+	int a;
+	int b;
+	int c;
+	int d;
 }				t_quad;
 
 typedef struct	s_tri
 {
-	size_t	a;
-	size_t	b;
-	size_t	c;
+	GLuint	a;
+	GLuint	b;
+	GLuint	c;
 	t_color	col;
 }				t_tri;
 
