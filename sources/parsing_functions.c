@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/27 13:27:39 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/04/27 15:51:51 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/04/28 10:43:58 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_vec4	parse_vec4(const char *line, size_t linec)
 	if (count < 3)
 		error_line(linec, "PARSER", "Vertice has not enough coordinates.");
 	if (count == 3)
-		res.w = 0.0;
+		res.w = 1.0;
 	return (res);
 }
 

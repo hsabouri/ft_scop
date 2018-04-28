@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 19:18:33 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/04/27 16:57:02 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/04/28 11:50:30 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,6 @@ typedef struct	s_quads
 	t_quad		*content;
 	size_t		size;
 }				t_quads;
-
-typedef struct	s_vertices
-{
-	t_vec4		*content;
-	size_t		size;
-}				t_vertices;
 
 typedef struct	s_parsed
 {

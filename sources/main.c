@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 11:22:10 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/04/27 18:55:19 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/04/28 17:52:58 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ void	update(GLFWwindow *win, GLuint program)
 int main(int ac, char **av)
 {
 	t_parsed	parsed;
-	t_triangles	iba;
+	t_tris		iba;
+	t_vertices	vbo;
 
 	if (ac >= 2)
 		parsed = parse(av[1]);
@@ -45,6 +46,8 @@ int main(int ac, char **av)
 	verify(&parsed);
 	iba = triangulate(&parsed);
 	assign_color(&iba);
+	vbo = normalize_all(&(parsed.vertices));
+	vbo = center(&vbo);
 	/*
 	GLFWwindow	*win;
 	GLuint		vbo;

@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 16:48:30 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/04/27 14:38:43 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/04/28 17:04:17 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,13 @@
 #  define GLFW_INCLUDE_NONE
 # endif
 # include <GLFW/glfw3.h>
+
+typedef enum	e_axis
+{
+	X,
+	Y,
+	Z
+}				t_axis;
 
 typedef struct	s_tex2
 {
@@ -57,9 +64,15 @@ typedef struct	s_tri
 	t_color	col;
 }				t_tri;
 
+typedef struct	s_vertices
+{
+	t_vec4		*content;
+	size_t		size;
+}				t_vertices;
+
 typedef struct	s_tris
 {
-	t_tri		*tris;
+	t_tri		*content;
 	size_t		size;
 }				t_tris;
 

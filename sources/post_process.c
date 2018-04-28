@@ -6,11 +6,12 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/27 16:46:47 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/04/27 18:55:16 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/04/28 16:55:51 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_scop.h"
+#include "vec.h"
 
 static size_t	sizeit(t_quads quads)
 {
@@ -30,10 +31,10 @@ static size_t	sizeit(t_quads quads)
 	return (res);
 }
 
-t_triangles		triangulate(t_parsed *parsed)
+t_tris		triangulate(t_parsed *parsed)
 {
 	size_t		iterator;
-	t_triangles	res;
+	t_tris	res;
 
 	if (!(res.content = (t_tri *)malloc(sizeof(t_tri) * sizeit(parsed->quads))))
 		error("SYSTEM", "Can't allocate memory.");
@@ -57,24 +58,7 @@ t_triangles		triangulate(t_parsed *parsed)
 	return (res);
 }
 
-static t_color	get_color(t_color start, t_color end, int pos, int max)
-{
-	t_color	iter;
-	t_color	res;
-
-	iter.r = (end.r - start.r) / max;
-	iter.g = (end.g - start.g) / max;
-	iter.b = (end.b - start.b) / max;
-	iter.a = (end.a - start.a) / max;
-	res = start;
-	res.r += iter.r * pos;
-	res.g += iter.g * pos;
-	res.b += iter.b * pos;
-	res.a += iter.a * pos;
-	return (res);
-}
-
-void			assign_color(t_triangles *iba)
+void			assign_color(t_tris *iba)
 {
 	size_t	iterator;
 	t_color	start;
@@ -88,4 +72,33 @@ void			assign_color(t_triangles *iba)
 		iba->content[iterator].col = get_color(start, end, iterator, iba->size);
 		iterator++;
 	}
+}
+
+t_vertices		normalize_all(t_vertices *src)
+{
+	size_t	iterator;
+
+	iterator = 0;
+	while (iterator < src->size)
+	{
+		src->content[iterator] = normalize(src->content[iterator]);
+		iterator++;
+	}
+	return (*src);
+}
+
+t_vertices		center(t_vertices *src)
+{
+	const t_vec4	center = find_center(src);
+	t_vec4			*current;
+	size_t			iterathor;
+
+	iterathor = 0;
+	while (iterathor < src->size)
+	{
+		current = src->content + iterathor;
+		*current = vec_sub(*current, center);
+		iterathor++;
+	}
+	return (*src);
 }

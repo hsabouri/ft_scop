@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 11:19:46 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/04/27 18:52:31 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/04/28 15:11:54 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,6 @@
 # include "parser.h"
 # include "types.h"
 
-
-typedef struct	s_triangles
-{
-	t_tri		*content;
-	size_t		size;
-}				t_triangles;
-
 int				error(const char *error_type, const char *to_display);
 int				error_line(const size_t line, const char *error_type,\
 				const char *to_display);
@@ -42,7 +35,11 @@ GLuint			init_program(void);
 void			init_buffers(GLuint *vbo);
 void			set_error_callbacks(void);
 void			set_callbacks(GLFWwindow *win);
-t_triangles		triangulate(t_parsed *parsed);
-void			assign_color(t_triangles *iba);
+t_tris			triangulate(t_parsed *parsed);
+void			assign_color(t_tris *iba);
+t_vertices		normalize_all(t_vertices *src);
+t_vec4			find_center(t_vertices *buf);
+t_vertices		center(t_vertices *src);
+t_color			get_color(t_color start, t_color end, int pos, int max);
 
 #endif
