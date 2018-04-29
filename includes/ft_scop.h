@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 11:19:46 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/04/28 15:11:54 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/04/29 12:00:58 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 
 # include "parser.h"
 # include "types.h"
+# include "vec.h"
+# include <math.h>
 
 int				error(const char *error_type, const char *to_display);
 int				error_line(const size_t line, const char *error_type,\

@@ -6,7 +6,7 @@
 #    By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/11 11:06:31 by hsabouri          #+#    #+#              #
-#    Updated: 2018/04/28 17:53:06 by hsabouri         ###   ########.fr        #
+#    Updated: 2018/04/29 12:30:08 by hsabouri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,8 @@ SRCNAM= main.c\
 		post_process.c\
 		vec_basic.c\
 		vec_op.c\
-		tools.c
+		tools.c\
+		axis.c
 INCNAM= ft_scop.h\
 		parser.h\
 		types.h\

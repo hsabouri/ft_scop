@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/28 13:51:20 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/04/28 17:52:42 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/04/29 12:30:16 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,27 +62,10 @@ GLfloat	vec_dot(t_vec4 left, t_vec4 right)
 
 t_vec4	vec_rot(t_vec4 vec, t_axis axis, GLfloat amount)
 {
-	t_vec4	res;
-	GLfloat	sin_t;
-	GLfloat	cos_t;
-
-	sin_t = sin(amount);
-	cos_t = sin(amount);
-	res = vec;
 	if (axis == X)
-	{
-		res.y = vec.y * cos_t - vec.z * sin_t;
-		res.z = vec.y * sin_t + vec.z * cos_t;
-	}
+		return (x_axis(vec, amount));
 	else if (axis == Y)
-	{
-		res.x = vec.x * cos_t - vec.z * sin_t;
-		res.z = vec.x * sin_t + vec.z * cos_t;
-	}
+		return (y_axis(vec, amount));
 	else
-	{
-		res.x = vec.x * cos_t - vec.y * sin_t;
-		res.y = vec.x * sin_t + vec.y * cos_t;
-	}
-	return (res);
+		return (z_axis(vec, amount));
 }
