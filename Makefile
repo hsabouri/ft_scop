@@ -6,7 +6,7 @@
 #    By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/11 11:06:31 by hsabouri          #+#    #+#              #
-#    Updated: 2018/04/28 17:53:06 by hsabouri         ###   ########.fr        #
+#    Updated: 2018/04/29 17:13:52 by hsabouri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ INC= $(INCNAM:%=$(INCDIR)/%)
 OBJ= $(SRCNAM:%.c=$(OBJDIR)/%.o)
 
 CFLAGS = -Wall -Wextra -DNON_COMPLETE
+CC = clang
 #CFLAGS += -Werror
 CFLAGS += -g
 CFLAGS += -I$(LIBFTINC) -I$(LIBGLFWINC) -I$(INCDIR)
@@ -53,11 +54,11 @@ CFLAGS += -I$(LIBFTINC) -I$(LIBGLFWINC) -I$(INCDIR)
 
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
-CCFLAGS += -D LINUX
+CFLAGS += -D LINUX
 LDFLAGS += -lm -ldl -lX11 -lXext -lGL -lpthread
 endif
 ifeq ($(UNAME_S),Darwin)
-CCFLAGS += -D OSX
+CFLAGS += -D OSX
 LDFLAGS += -framework Cocoa -framework OpenGL -framework IOKit -framework CoreVideo
 endif
 

@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 16:48:30 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/04/28 17:04:17 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/04/30 13:42:37 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@
 #  define GLFW_INCLUDE_NONE
 # endif
 # include <GLFW/glfw3.h>
+
+# define MATSIZE 16
+# define MATX 0
+# define MATY 5
+# define MATZ 10
+# define MATW 15
 
 typedef enum	e_axis
 {
@@ -35,8 +41,23 @@ typedef struct	s_tex2
 typedef struct	s_vec4
 {
 	GLfloat x;
+	GLfloat x1;
+	GLfloat x2;
+	GLfloat x3;
+
+	GLfloat y0;
 	GLfloat y;
+	GLfloat y2;
+	GLfloat y3;
+
+	GLfloat z0;
+	GLfloat z1;
 	GLfloat z;
+	GLfloat z3;
+
+	GLfloat w0;
+	GLfloat w1;
+	GLfloat w2;
 	GLfloat w;
 }				t_vec4;
 
