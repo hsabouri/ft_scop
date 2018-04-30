@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_scop.h"
+#include "vec.h"
 
 t_vec4	parse_vec4(const char *line, size_t linec)
 {
@@ -21,6 +22,7 @@ t_vec4	parse_vec4(const char *line, size_t linec)
 	int		count;
 
 	line_c = strdup(line);
+	res = vec_new();
 	res_c = (GLfloat *)&res;
 	current = strtok(line_c, " ");
 	count = 0;

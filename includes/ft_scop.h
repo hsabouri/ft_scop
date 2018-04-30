@@ -13,7 +13,7 @@
 #ifndef  FT_SCOP
 # define FT_SCOP
 
-# ifdef OSX
+# ifdef __APPLE__
 #  include <OpenGL/gl3.h>
 #  define GLFW_INCLUDE_NONE
 # endif
@@ -34,14 +34,16 @@ int				error_line(const size_t line, const char *error_type,\
 				const char *to_display);
 void			init_version(void);
 GLuint			init_program(void);
-void			init_buffers(GLuint *vbo);
+void			init_buffers(t_vertices vbo, t_colors cbo, t_tris iba);
 void			set_error_callbacks(void);
 void			set_callbacks(GLFWwindow *win);
 t_tris			triangulate(t_parsed *parsed);
-void			assign_color(t_tris *iba);
+t_colors		assign_color(t_tris *iba);
 t_vertices		normalize_all(t_vertices *src);
 t_vec4			find_center(t_vertices *buf);
 t_vertices		center(t_vertices *src);
+t_vertices		scale(t_vertices *src, GLfloat amount);
+t_vertices		rotate(t_vertices *src, t_axis axis, GLfloat amount);
 t_color			get_color(t_color start, t_color end, int pos, int max);
 
 #endif

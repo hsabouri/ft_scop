@@ -33,11 +33,27 @@ void	update(GLFWwindow *win, GLuint program)
 	}
 }
 
-int main(int ac, char **av)
+GLFWwindow	*init(void)
+{
+	GLFWwindow	*win;
+
+	if (!glfwInit())
+		error("GLFW", "Failed to initialize glfw");
+	init_version();
+	win = glfwCreateWindow(640, 480, "ft_scop", NULL, NULL);
+	if (!win)
+		error("GLFW", "Failed to initilize window.");
+	return (win);
+}
+
+int			main(int ac, char **av)
 {
 	t_parsed	parsed;
 	t_tris		iba;
 	t_vertices	vbo;
+	t_colors	cbo;
+	GLFWwindow	*win;
+	GLuint		program;
 
 	if (ac >= 2)
 		parsed = parse(av[1]);
@@ -45,31 +61,25 @@ int main(int ac, char **av)
 		error("usage", "ft_scop file.obj");
 	verify(&parsed);
 	iba = triangulate(&parsed);
-	assign_color(&iba);
-	vbo = normalize_all(&(parsed.vertices));
-	vbo = center(&vbo);
-	/*
-	GLFWwindow	*win;
-	GLuint		vbo;
-	GLuint		program;
-
-	if (!glfwInit())
-		error("GLFW", "Failed to initilize.");
+	cbo = assign_color(&iba);
+	vbo = center(&(parsed.vertices));
+	vbo = scale(&(parsed.vertices), 0.5f);
+	vbo = rotate(&(parsed.vertices), Z, M_PI / 2.5);
+	vbo = rotate(&(parsed.vertices), Y, M_PI / 4);
 	set_error_callbacks();
-	init_version();
-	win = glfwCreateWindow(640, 480, "ft_scop", NULL, NULL);
-	if (!win) error("GLFW", "Failed to initilize window.");
+	win = init();
 	set_callbacks(win);
 	glfwMakeContextCurrent(win);
 	glfwSwapInterval(1);
 	program = init_program();
-	init_buffers(&vbo);
+	glEnable(GL_DEPTH_TEST);
+	glDepthFunc(GL_LESS);
+	init_buffers(vbo, cbo, iba);
 	while (!glfwWindowShouldClose(win))
 	{
 		update(win, program);
 	}
 	glfwDestroyWindow(win);
 	glfwTerminate();
-	*/
 	return (0);
 }

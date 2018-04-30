@@ -16,17 +16,17 @@
 static size_t	sizeit(t_quads quads)
 {
 	size_t	res;
-	size_t	iterathor;
+	size_t	iterator;
 
 	res = 0;
-	iterathor = 0;
-	while (iterathor < quads.size)
+	iterator = 0;
+	while (iterator < quads.size)
 	{
-		if (quads.content[iterathor].d >= 0)
+		if (quads.content[iterator].d >= 0)
 			res += 2;
 		else
 			res += 1;
-		iterathor++;
+		iterator++;
 	}
 	return (res);
 }
@@ -58,30 +58,37 @@ t_tris		triangulate(t_parsed *parsed)
 	return (res);
 }
 
-void			assign_color(t_tris *iba)
+t_colors		assign_color(t_tris *iba)
 {
-	size_t	iterator;
-	t_color	start;
-	t_color	end;
+	size_t		iterator;
+	t_color		start;
+	t_color		end;
+	t_colors	res;
 
 	iterator = 0;
 	start = (t_color) {1.0, 0.92157, 0.24313, 1.0};
 	end = (t_color) {1.0, 0.29412, 0.24313, 1.0};
-	while (iterator < iba->size)
+	if (!(res.content = (t_color *)malloc(sizeof(t_color) * iba->size)))
+		error("SYSTEM", "Can't allocate memory for colors");
+	res.size = iba->size;
+	while (iterator < res.size)
 	{
-		iba->content[iterator].col = get_color(start, end, iterator, iba->size);
+		res.content[iterator] = get_color(start, end, iterator, iba->size);
 		iterator++;
 	}
+	return (res);
 }
 
-t_vertices		normalize_all(t_vertices *src)
+t_vertices		scale(t_vertices *src, GLfloat amount)
 {
-	size_t	iterator;
+	t_vec4			*current;
+	size_t			iterator;
 
 	iterator = 0;
 	while (iterator < src->size)
 	{
-		src->content[iterator] = normalize(src->content[iterator]);
+		current = src->content + iterator;
+		*current = vec_uniform_scale(*current, amount);
 		iterator++;
 	}
 	return (*src);
@@ -91,14 +98,29 @@ t_vertices		center(t_vertices *src)
 {
 	const t_vec4	center = find_center(src);
 	t_vec4			*current;
-	size_t			iterathor;
+	size_t			iterator;
 
-	iterathor = 0;
-	while (iterathor < src->size)
+	iterator = 0;
+	while (iterator < src->size)
 	{
-		current = src->content + iterathor;
+		current = src->content + iterator;
 		*current = vec_sub(*current, center);
-		iterathor++;
+		iterator++;
+	}
+	return (*src);
+}
+
+t_vertices		rotate(t_vertices *src, t_axis axis, GLfloat amount)
+{
+	t_vec4			*current;
+	size_t			iterator;
+
+	iterator = 0;
+	while (iterator < src->size)
+	{
+		current = src->content + iterator;
+		*current = vec_rot(*current, axis, amount);
+		iterator++;
 	}
 	return (*src);
 }

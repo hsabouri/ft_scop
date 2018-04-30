@@ -18,6 +18,14 @@ typedef union	u_mem_rape
 	GLfloat	side;
 }				t_mem_rape;
 
+t_vec4	vec_new(void)
+{
+	return ((t_vec4){0, 0, 0, 0,
+			 		 0, 0, 0, 0,
+			 		 0, 0, 0, 0,
+			 		 0, 0, 0, 0});
+}
+
 GLfloat	ft_sqrt(GLfloat src)
 {
 	t_mem_rape			res;
@@ -32,7 +40,7 @@ GLfloat	ft_sqrt(GLfloat src)
 	return (res.side);
 }
 
-t_vec4	normalize(t_vec4 src)
+t_vec4	normalize(t_vec4 src) //TODO
 {
 	t_vec4	res;
 	GLfloat	norme;

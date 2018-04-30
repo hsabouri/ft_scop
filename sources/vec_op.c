@@ -14,14 +14,6 @@
 #include "vec.h"
 #include <math.h>
 
-t_vec4	vec_new(void)
-{
-	return ((t_vec4){1, 0, 0, 0,
-			 0, 1, 0, 0,
-			 0, 0, 1, 0,
-			 0, 0, 0, 1});
-}
-
 t_vec4	vec_add(t_vec4 left, t_vec4 right)
 {
 	t_vec4	res;
@@ -65,7 +57,7 @@ t_vec4	vec_sub(t_vec4 left, t_vec4 right)
 t_vec4	vec_mult(t_vec4 l, t_vec4 r)
 {
 	t_vec4	d;
-
+	
 	d.x = l.x * r.x +   l.x1 * r.y0 + l.x2 * r.z0 + l.x3 * r.w0;
 	d.x1 = l.x * r.x1 + l.x1 * r.y +  l.x2 * r.z1 + l.x3 * r.w1;
 	d.x2 = l.x * r.x2 + l.x1 * r.y2 + l.x2 * r.z +  l.x3 * r.w2;
@@ -96,4 +88,9 @@ t_vec4	vec_rot(t_vec4 vec, t_axis axis, GLfloat amount)
 		return (vec_mult(vec, ROTY(sin_t, cos_t)));
 	else
 		return (vec_mult(vec, ROTZ(sin_t, cos_t)));
+}
+
+t_vec4	vec_uniform_scale(t_vec4 vec, GLfloat amount)
+{
+	return (vec_mult(vec, MAT_UNIT(amount)));
 }

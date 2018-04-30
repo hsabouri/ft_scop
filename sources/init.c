@@ -12,7 +12,7 @@
 
 #include "ft_scop.h"
 
-void			init_version(void)
+void		init_version(void)
 {
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
@@ -78,7 +78,15 @@ GLuint	init_program(void)
 	return (program);
 }
 
-void	init_buffers(GLuint *vbo) {
+void	init_buffers(t_vertices vba, t_colors cba, t_tris iba)
+{
+	GLuint	vbo_t;
+	GLuint	ibo_t;
+	GLuint	cba_t;
+
+	glGenVertexArrays(1, &vbo_t);
+	// TODO
+	// TODO
 	/*
 	t_vertex	vertices[6] = {
 		{{-0.5f, 0.5f, 0.0f, 1.0f}, {0.0f, 0.0f, 1.0f, 1.0f}},

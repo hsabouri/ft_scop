@@ -26,9 +26,10 @@ void	display_vec(t_vec4 vec)
 		j = 0;
 		while (j < 4)
 		{
-			printf("%8f, ", vec_t[i * 4 + j]);
+			printf("%5.2f, ", vec_t[i * 4 + j]);
 			j++;
 		}
+		printf(" |\n");
 		i++;
 	}
 }

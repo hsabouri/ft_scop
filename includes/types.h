@@ -69,6 +69,12 @@ typedef struct	s_color
 	GLfloat a;
 }				t_color;
 
+typedef struct	s_colors
+{
+	t_color	*content;
+	size_t	size;
+}				t_colors;
+
 typedef struct	s_quad
 {
 	int a;
@@ -82,7 +88,6 @@ typedef struct	s_tri
 	GLuint	a;
 	GLuint	b;
 	GLuint	c;
-	t_color	col;
 }				t_tri;
 
 typedef struct	s_vertices

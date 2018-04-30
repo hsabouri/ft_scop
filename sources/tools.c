@@ -56,11 +56,12 @@ t_vec4			find_center(t_vertices *buf)
 {
 	size_t	iterator;
 	t_vec4	current;
-	t_vec4	res;;
+	t_vec4	res;
 	t_vec4	top;
 	t_vec4	bottom;
 
 	current = buf->content[0];
+	top = vec_new();
 	top.x = current.x * current.w;
 	top.y = current.y * current.w;
 	top.z = current.z * current.w;
@@ -73,8 +74,9 @@ t_vec4			find_center(t_vertices *buf)
 		bottom = compare_sub(bottom, current);
 		iterator++;
 	}
+	res = vec_new();
 	res.x = (top.x + bottom.x) / 2;
 	res.y = (top.y + bottom.y) / 2;
 	res.z = (top.z + bottom.z) / 2;
-	return (normalize(res));
+	return (res);
 }

@@ -32,7 +32,8 @@ SRCNAM= main.c\
 		vec_basic.c\
 		vec_op.c\
 		tools.c\
-		axis.c
+		axis.c\
+		display.c
 INCNAM= ft_scop.h\
 		parser.h\
 		types.h\

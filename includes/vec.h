@@ -29,15 +29,24 @@
 				  0, 0, 1, 0,\
 				  0, 0, 0, 1}
 
+# define MAT_UNIT(scale) (t_vec4) {scale, 0, 0, 0, \
+				  				   0, scale, 0, 0,\
+				  				   0, 0, scale, 0,\
+				  				   0, 0, 0, scale}
+
 t_vec4		normalize(t_vec4 src);
+t_vec4		vec_new(void);
 t_vec4		vec_sub(t_vec4 left, t_vec4 right);
 t_vec4		vec_add(t_vec4 left, t_vec4 right);
 t_vec4		vec_mult(t_vec4 left, t_vec4 right);
 GLfloat		vec_dot(t_vec4 left, t_vec4 right);
 t_vec4		vec_rot(t_vec4 vec, t_axis axis, GLfloat amount);
+t_vec4		vec_uniform_scale(t_vec4 vec, GLfloat amount);
 
-t_vec4	x_axis(t_vec4 vec, GLfloat amount);
-t_vec4	y_axis(t_vec4 vec, GLfloat amount);
-t_vec4	z_axis(t_vec4 vec, GLfloat amount);
+t_vec4		x_axis(t_vec4 vec, GLfloat amount);
+t_vec4		y_axis(t_vec4 vec, GLfloat amount);
+t_vec4		z_axis(t_vec4 vec, GLfloat amount);
+
+void		display_vec(t_vec4 vec);
 
 #endif
