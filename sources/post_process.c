@@ -74,6 +74,7 @@ t_colors		assign_color(t_tris *iba)
 	while (iterator < res.size)
 	{
 		res.content[iterator] = get_color(start, end, iterator, iba->size);
+		iba->content[iterator].color = iterator;
 		iterator++;
 	}
 	return (res);
@@ -104,7 +105,7 @@ t_vertices		center(t_vertices *src)
 	while (iterator < src->size)
 	{
 		current = src->content + iterator;
-		*current = vec_sub(*current, center);
+		*current = vec_trans(*current, -center.x, -center.y, -center.z);
 		iterator++;
 	}
 	return (*src);
@@ -120,6 +121,21 @@ t_vertices		rotate(t_vertices *src, t_axis axis, GLfloat amount)
 	{
 		current = src->content + iterator;
 		*current = vec_rot(*current, axis, amount);
+		iterator++;
+	}
+	return (*src);
+}
+
+t_vertices		translate(t_vertices *src, GLfloat x, GLfloat y, GLfloat z)
+{
+	t_vec4			*current;
+	size_t			iterator;
+
+	iterator = 0;
+	while (iterator < src->size)
+	{
+		current = src->content + iterator;
+		*current = vec_trans(*current, x, y, z);
 		iterator++;
 	}
 	return (*src);

@@ -12,19 +12,25 @@
 
 #include "ft_scop.h"
 
-void	update(GLFWwindow *win, GLuint program)
+void	update(t_env *env)
 {
 	int width;
 	int height;
 
-	glfwGetFramebufferSize(win, &width, &height);
+	glEnableVertexAttribArray(0);
+	glBindBuffer(GL_ARRAY_BUFFER, env->vb_id);
+	glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 0, NULL);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, env->ib_id);
+
+	glfwGetFramebufferSize(env->win, &width, &height);
 	glViewport(0, 0, width, height);
 	glClear(GL_COLOR_BUFFER_BIT);
-	glUseProgram(program);
-	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, NULL + 0);
-	glfwSwapBuffers(win);
+	glUseProgram(env->program);
+	glDrawElements(GL_TRIANGLES, env->indexes.size, GL_UNSIGNED_INT, NULL + 0);
+	glfwSwapBuffers(env->win);
 	glfwPollEvents();
 
+	glDisableVertexAttribArray(0);
 	GLuint err = glGetError();
 	if (err != GL_NO_ERROR)
 	{
@@ -49,37 +55,38 @@ GLFWwindow	*init(void)
 int			main(int ac, char **av)
 {
 	t_parsed	parsed;
-	t_tris		iba;
-	t_vertices	vbo;
-	t_colors	cbo;
-	GLFWwindow	*win;
-	GLuint		program;
+	t_env		env;
 
 	if (ac >= 2)
 		parsed = parse(av[1]);
 	else
 		error("usage", "ft_scop file.obj");
 	verify(&parsed);
-	iba = triangulate(&parsed);
-	cbo = assign_color(&iba);
-	vbo = center(&(parsed.vertices));
-	vbo = scale(&(parsed.vertices), 0.5f);
-	vbo = rotate(&(parsed.vertices), Z, M_PI / 2.5);
-	vbo = rotate(&(parsed.vertices), Y, M_PI / 4);
 	set_error_callbacks();
-	win = init();
-	set_callbacks(win);
-	glfwMakeContextCurrent(win);
+	env.win = init();
+	set_callbacks(env.win);
+	glfwMakeContextCurrent(env.win);
 	glfwSwapInterval(1);
-	program = init_program();
+	env.program = init_program();
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
-	init_buffers(vbo, cbo, iba);
-	while (!glfwWindowShouldClose(win))
-	{
-		update(win, program);
+	env.indexes = triangulate(&parsed);
+	env.colors = assign_color(&env.indexes);
+	env.vertices = parsed.vertices;
+	env.vertices = scale(&env.vertices, 0.2);
+	env.vertices = center(&env.vertices);
+	env.vertices = rotate(&env.vertices, Z, M_PI / 4);
+	env.vertices = rotate(&env.vertices, Y, M_PI / 4);
+	env.vertices = translate(&env.vertices, 0, 0, -0.5);
+	for (size_t i = 0; i < env.vertices.size; i++) {
+		display_vec(env.vertices.content[i]);
 	}
-	glfwDestroyWindow(win);
+	init_buffers(&env);
+	while (!glfwWindowShouldClose(env.win))
+	{
+		update(&env);
+	}
+	glfwDestroyWindow(env.win);
 	glfwTerminate();
 	return (0);
 }

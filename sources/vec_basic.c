@@ -18,17 +18,22 @@ typedef union	u_mem_rape
 	GLfloat	side;
 }				t_mem_rape;
 
-t_vec4	vec_new(void)
+t_mat4	mat_new(GLfloat x, GLfloat y, GLfloat z, GLfloat w)
 {
-	return ((t_vec4){0, 0, 0, 0,
-			 		 0, 0, 0, 0,
-			 		 0, 0, 0, 0,
-			 		 0, 0, 0, 0});
+	return ((t_mat4){1, 0, 0, x,
+			 		 0, 1, 0, y,
+			 		 0, 0, 1, z,
+			 		 0, 0, 0, w});
+}
+
+t_vec4	vec_new(GLfloat x, GLfloat y, GLfloat z, GLfloat w)
+{
+	return ((t_vec4) {x, y, z, w});
 }
 
 GLfloat	ft_sqrt(GLfloat src)
 {
-	t_mem_rape			res;
+	t_mem_rape		res;
 	const GLint		magic = -0x4C000;
 	const GLfloat	half = 0.5f;
 
@@ -40,7 +45,7 @@ GLfloat	ft_sqrt(GLfloat src)
 	return (res.side);
 }
 
-t_vec4	normalize(t_vec4 src) //TODO
+t_vec4	normalize(t_vec4 src)
 {
 	t_vec4	res;
 	GLfloat	norme;
@@ -54,4 +59,9 @@ t_vec4	normalize(t_vec4 src) //TODO
 	res.z = res.z / norme;
 	res.w = norme;
 	return (res);
+}
+
+t_vec4	vec_uniform_scale(t_vec4 vec, GLfloat amount)
+{
+	return (vec_mult(vec, MAT_UNIT(amount)));
 }

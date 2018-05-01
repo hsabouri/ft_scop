@@ -22,18 +22,16 @@ t_vec4	parse_vec4(const char *line, size_t linec)
 	int		count;
 
 	line_c = strdup(line);
-	res = vec_new();
+	res = vec_new(0, 0, 0, 0);
 	res_c = (GLfloat *)&res;
 	current = strtok(line_c, " ");
 	count = 0;
-	while (current)
+	while (current && count < 4)
 	{
-		res_c[count * 5] = atof(current);
+		res_c[count] = atof(current);
 		count++;
 		current = strtok(NULL, " ");
 	}
-	if (count > 4)
-		error_line(linec, "PARSER", "Vertice has too much coordinates.");
 	if (count < 3)
 		error_line(linec, "PARSER", "Vertice has not enough coordinates.");
 	if (count == 3)
@@ -53,7 +51,7 @@ t_quad	parse_quad(const char *line, size_t linec)
 	res_c = (int *)&res;
 	current = strtok(line_c, " ");
 	count = 0;
-	while (current)
+	while (current && count < 5)
 	{
 		res_c[count] = atoi(current) - 1;
 		if (res_c[count] < 0)
@@ -63,8 +61,6 @@ t_quad	parse_quad(const char *line, size_t linec)
 	}
 	if (count < 3)
 		error_line(linec, "PARSER", "Face has not enough indexes.");
-	if (count > 4)
-		error_line(linec, "PARSER", "Only quads and triangles are supported.");
 	if (count == 3)
 		res.d = -1;
 	return (res);

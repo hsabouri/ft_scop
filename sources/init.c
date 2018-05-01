@@ -78,53 +78,26 @@ GLuint	init_program(void)
 	return (program);
 }
 
-void	init_buffers(t_vertices vba, t_colors cba, t_tris iba)
+t_env	*init_buffers(t_env *env)
 {
-	GLuint	vbo_t;
-	GLuint	ibo_t;
-	GLuint	cba_t;
-
-	glGenVertexArrays(1, &vbo_t);
-	// TODO
-	// TODO
-	/*
-	t_vertex	vertices[6] = {
-		{{-0.5f, 0.5f, 0.0f, 1.0f}, {0.0f, 0.0f, 1.0f, 1.0f}},
-		{{0.5f, 0.5f, 0.0f, 1.0f}, {1.0f, 0.0f, 0.0f, 1.0f}},
-		{{0.0f, -0.5f, 0.0f, 1.0f}, {0.0f, 1.0f, 0.0f, 1.0f}},
-		{{-0.5f, -0.5f, 0.0f, 1.0f}, {1.0f, 0.0f, 1.0f, 1.0f}},
-		{{0.5f, -0.5f, 0.0f, 1.0f}, {0.0f, 1.0f, 1.0f, 1.0f}},
-		{{0.0f, 0.5f, 0.0f, 1.0f}, {1.0f, 1.0f, 0.0f, 1.0f}},
-	};
-	GLubyte		indices[] = {
-		0, 3, 2,
-		1, 4, 5
-	};
-	GLuint			vao;
-	GLuint			ibi;
 	GLint			err;
-	const size_t	offset = sizeof(t_vec4);
 
-
-	glGenVertexArrays(1, &vao);
-	glBindVertexArray(vao);
-
-	glGenBuffers(1, vbo);
-	glBindBuffer(GL_ARRAY_BUFFER, *vbo);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-	glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, sizeof(t_vertex), 0);
-	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(t_vertex), NULL + offset);
-
-	glEnableVertexAttribArray(0);
-	glEnableVertexAttribArray(1);
-
-	glGenBuffers(1, &ibi);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibi);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-
+	glGenVertexArrays(1, &env->vao_id);
+	glBindVertexArray(env->vao_id);
+	glGenBuffers(1, &env->vb_id);
+	glBindBuffer(GL_ARRAY_BUFFER, env->vb_id);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(t_vec4) * env->vertices.size,\
+		env->vertices.content, GL_STATIC_DRAW);
+	glGenBuffers(1, &env->cb_id);
+	glBindBuffer(GL_ARRAY_BUFFER, env->cb_id);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(t_color) * env->colors.size,\
+		env->colors.content, GL_STATIC_DRAW);
+	glGenBuffers(1, &env->ib_id);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, env->ib_id);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(t_tris) * env->indexes.size,\
+		env->indexes.content, GL_STATIC_DRAW);
 	err = glGetError();
 	if (err != GL_NO_ERROR)
-		error("OPENGL", "Could not create VBO");
-	*/
+		error("OPENGL", "Could not allocate memory.");
+	return (env);
 }

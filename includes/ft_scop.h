@@ -29,21 +29,35 @@
 # include "vec.h"
 # include <math.h>
 
-int				error(const char *error_type, const char *to_display);
-int				error_line(const size_t line, const char *error_type,\
-				const char *to_display);
-void			init_version(void);
-GLuint			init_program(void);
-void			init_buffers(t_vertices vbo, t_colors cbo, t_tris iba);
-void			set_error_callbacks(void);
-void			set_callbacks(GLFWwindow *win);
-t_tris			triangulate(t_parsed *parsed);
-t_colors		assign_color(t_tris *iba);
-t_vertices		normalize_all(t_vertices *src);
-t_vec4			find_center(t_vertices *buf);
-t_vertices		center(t_vertices *src);
-t_vertices		scale(t_vertices *src, GLfloat amount);
-t_vertices		rotate(t_vertices *src, t_axis axis, GLfloat amount);
-t_color			get_color(t_color start, t_color end, int pos, int max);
+typedef struct	s_env
+{
+	GLuint		vao_id;
+	GLuint		vb_id;
+	GLuint		cb_id;
+	GLuint		ib_id;
+	t_vertices	vertices;
+	t_colors	colors;
+	t_tris		indexes;
+	GLFWwindow	*win;
+	GLuint		program;
+}				t_env;
+
+int			error(const char *error_type, const char *to_display);
+int			error_line(const size_t line, const char *error_type,\
+			const char *to_display);
+void		init_version(void);
+GLuint		init_program(void);
+t_env		*init_buffers(t_env *env);
+void		set_error_callbacks(void);
+void		set_callbacks(GLFWwindow *win);
+t_tris		triangulate(t_parsed *parsed);
+t_colors	assign_color(t_tris *iba);
+t_vertices	normalize_all(t_vertices *src);
+t_vec4		find_center(t_vertices *buf);
+t_vertices	center(t_vertices *src);
+t_vertices	translate(t_vertices *src, GLfloat x, GLfloat y, GLfloat z);
+t_vertices	scale(t_vertices *src, GLfloat amount);
+t_vertices	rotate(t_vertices *src, t_axis axis, GLfloat amount);
+t_color		get_color(t_color start, t_color end, int pos, int max);
 
 #endif

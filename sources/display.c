@@ -15,21 +15,5 @@
 
 void	display_vec(t_vec4 vec)
 {
-	const GLfloat	*vec_t = (GLfloat *)&vec;
-	size_t			i;
-	size_t			j;
-
-	i = 0;
-	while (i < 4)
-	{
-		printf("| ");
-		j = 0;
-		while (j < 4)
-		{
-			printf("%5.2f, ", vec_t[i * 4 + j]);
-			j++;
-		}
-		printf(" |\n");
-		i++;
-	}
+	printf("%f  --  %f  --  %f  --  %f\n", vec.x, vec.y, vec.z, vec.w);
 }
