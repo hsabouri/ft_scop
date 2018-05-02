@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/27 16:46:47 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/04/28 16:55:51 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/05/02 12:47:15 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,26 +58,27 @@ t_tris		triangulate(t_parsed *parsed)
 	return (res);
 }
 
-t_colors		assign_color(t_tris *iba)
+t_env		assign_color(t_env *env)
 {
-	size_t		iterator;
-	t_color		start;
-	t_color		end;
-	t_colors	res;
+	size_t			i;
+	t_color			start;
+	t_color			end;
+	t_color			current;
+	t_vec4			*vertices;
 
-	iterator = 0;
+	i = 0;
 	start = (t_color) {1.0, 0.92157, 0.24313, 1.0};
 	end = (t_color) {1.0, 0.29412, 0.24313, 1.0};
-	if (!(res.content = (t_color *)malloc(sizeof(t_color) * iba->size)))
-		error("SYSTEM", "Can't allocate memory for colors");
-	res.size = iba->size;
-	while (iterator < res.size)
+	vertices = env->vertices.content;
+	while (i < env->indexes.size)
 	{
-		res.content[iterator] = get_color(start, end, iterator, iba->size);
-		iba->content[iterator].color = iterator;
-		iterator++;
+		current = get_color(start, end, i, env->indexes.size);
+		vertices[env->indexes.content[i].a].color = current;
+		vertices[env->indexes.content[i].b].color = current;
+		vertices[env->indexes.content[i].c].color = current;
+		i++;
 	}
-	return (res);
+	return (*env);
 }
 
 t_vertices		scale(t_vertices *src, GLfloat amount)

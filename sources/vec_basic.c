@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/28 10:37:02 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/04/28 13:43:47 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/05/02 12:56:30 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_mat4	mat_new(GLfloat x, GLfloat y, GLfloat z, GLfloat w)
 
 t_vec4	vec_new(GLfloat x, GLfloat y, GLfloat z, GLfloat w)
 {
-	return ((t_vec4) {x, y, z, w});
+	return ((t_vec4) {x, y, z, w, (t_color) {0, 0, 0, 1}});
 }
 
 GLfloat	ft_sqrt(GLfloat src)

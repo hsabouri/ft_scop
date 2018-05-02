@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 11:08:53 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/04/27 13:00:56 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/05/02 12:52:07 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,6 @@ t_env	*init_buffers(t_env *env)
 	glBindBuffer(GL_ARRAY_BUFFER, env->vb_id);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(t_vec4) * env->vertices.size,\
 		env->vertices.content, GL_STATIC_DRAW);
-	glGenBuffers(1, &env->cb_id);
-	glBindBuffer(GL_ARRAY_BUFFER, env->cb_id);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(t_color) * env->colors.size,\
-		env->colors.content, GL_STATIC_DRAW);
 	glGenBuffers(1, &env->ib_id);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, env->ib_id);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(t_tris) * env->indexes.size,\
