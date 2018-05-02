@@ -6,7 +6,7 @@
 #    By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/11 11:06:31 by hsabouri          #+#    #+#              #
-#    Updated: 2018/05/02 18:31:21 by hsabouri         ###   ########.fr        #
+#    Updated: 2018/05/02 21:46:28 by hsabouri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,20 +57,22 @@ CFLAGS += -I$(LIBFTINC) -I$(LIBGLFWINC) -I$(INCDIR)
 
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
-CFLAGS += -D LINUX
-LDFLAGS += -lm -ldl -lX11 -lXext -lGL -lpthread
+CFLAGS += -D LINUX `pkg-config --cflags glfw3` -Ilib/GLFW/deps/ -Ilib/GLFW/include/ 
+LDFLAGS += -LGLFW/src `pkg-config --static --libs glfw3` -Ilib/GLFW/deps/ 
+SPECIAL = lib/GLFW/deps/glad.c
 endif
 ifeq ($(UNAME_S),Darwin)
 CFLAGS += -D OSX
-LDFLAGS += -framework Cocoa -framework OpenGL -framework IOKit -framework CoreVideo
+LDFLAGS += -lgflw3 -framework Cocoa -framework OpenGL -framework IOKit -framework CoreVideo
+SPECIAL = 
 endif
 
-LDFLAGS += -L$(LIBFTDIR) -lft -L$(LIBGLFWDIR) -lglfw3 
+LDFLAGS += -L$(LIBFTDIR) -lft -L$(LIBGLFWDIR)
 
 all: libs $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) -o $@ $^ $(LDFLAGS)
+	$(CC) -o $@ $^ $(SPECIAL) $(LDFLAGS)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c $(INC)
 	mkdir -p objs

@@ -4,9 +4,9 @@
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
+/*                                                +#+#+#+#+#+   +#+           */ 
 /*   Created: 2018/04/11 11:22:10 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/05/02 18:23:31 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/05/02 21:51:46 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,9 @@ GLFWwindow	*init(void)
 	win = glfwCreateWindow(640, 480, "ft_scop", NULL, NULL);
 	if (!win)
 		error("GLFW", "Failed to initilize window.");
+	glfwMakeContextCurrent(win);
+    gladLoadGLLoader((GLADloadproc) glfwGetProcAddress);
+	glfwSwapInterval(1);
 	return (win);
 }
 
@@ -65,8 +68,6 @@ int			main(int ac, char **av)
 	set_error_callbacks();
 	env.win = init();
 	set_callbacks(env.win);
-	glfwMakeContextCurrent(env.win);
-	glfwSwapInterval(1);
 	env.program = init_program();
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);

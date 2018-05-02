@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 11:19:46 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/05/02 18:30:55 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/05/02 21:46:31 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # ifdef __APPLE__
 #  include <OpenGL/gl3.h>
 #  define GLFW_INCLUDE_NONE
+# else
+#  include <glad/glad.h>
 # endif
 # include <GLFW/glfw3.h>
 
