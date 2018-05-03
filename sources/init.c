@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 11:08:53 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/05/02 12:52:07 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/05/03 10:58:33 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,9 @@ GLuint	init_program(void)
 
 t_env	*init_buffers(t_env *env)
 {
-	GLint			err;
+	GLint	err;
+	GLint	col_loc;
+	GLint	pos_loc;
 
 	glGenVertexArrays(1, &env->vao_id);
 	glBindVertexArray(env->vao_id);
@@ -88,12 +90,19 @@ t_env	*init_buffers(t_env *env)
 	glBindBuffer(GL_ARRAY_BUFFER, env->vb_id);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(t_vec4) * env->vertices.size,\
 		env->vertices.content, GL_STATIC_DRAW);
-	glGenBuffers(1, &env->ib_id);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, env->ib_id);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(t_tris) * env->indexes.size,\
-		env->indexes.content, GL_STATIC_DRAW);
+	pos_loc = glGetAttribLocation(env->program, "vPos");
+	col_loc = glGetAttribLocation(env->program, "vCol");
+    glEnableVertexAttribArray(pos_loc);
+    glVertexAttribPointer(pos_loc, 4, GL_FLOAT, GL_FALSE,
+                          sizeof(t_vec4), (void*) 0);
+    glEnableVertexAttribArray(col_loc);
+    glVertexAttribPointer(col_loc, 4, GL_FLOAT, GL_FALSE,
+                          sizeof(t_vec4), (void*) (sizeof(GLfloat) * 4));
 	err = glGetError();
 	if (err != GL_NO_ERROR)
+	{
+		printf("error : %d\n", err);
 		error("OPENGL", "Could not allocate memory.");
+	}
 	return (env);
 }
