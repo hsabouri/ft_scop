@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 16:48:30 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/05/02 12:21:06 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/05/03 18:09:41 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,20 +37,20 @@ typedef struct	s_tex2
 typedef struct	s_mat4
 {
 	GLfloat x;
-	GLfloat x1;
-	GLfloat x2;
-	GLfloat x3;
 	GLfloat y0;
-	GLfloat y;
-	GLfloat y2;
-	GLfloat y3;
 	GLfloat z0;
-	GLfloat z1;
-	GLfloat z;
-	GLfloat z3;
 	GLfloat w0;
+	GLfloat x1;
+	GLfloat y;
+	GLfloat z1;
 	GLfloat w1;
+	GLfloat x2;
+	GLfloat y2;
+	GLfloat z;
 	GLfloat w2;
+	GLfloat x3;
+	GLfloat y3;
+	GLfloat z3;
 	GLfloat w;
 }				t_mat4;
 

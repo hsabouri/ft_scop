@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 11:19:46 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/05/02 21:46:31 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/05/03 17:52:04 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,12 @@ typedef struct	s_env
 	GLuint		vao_id;
 	GLuint		vb_id;
 	GLuint		ib_id;
+	GLuint		view_loc;
+	GLuint		model_loc;
+	GLuint		proj_loc;
+	t_mat4		rot;
+	t_mat4		proj;
+	t_mat4		camera;
 	t_vertices	vertices;
 	t_tris		indexes;
 	GLFWwindow	*win;
@@ -48,6 +54,7 @@ int			error_line(const size_t line, const char *error_type,\
 void		init_version(void);
 GLuint		init_program(void);
 t_env		*init_buffers(t_env *env);
+t_env		*init_uniforms(t_env *env);
 void		set_error_callbacks(void);
 void		set_callbacks(GLFWwindow *win);
 t_tris		triangulate(t_parsed *parsed);
@@ -60,5 +67,6 @@ t_vertices	scale(t_vertices *src, GLfloat amount);
 t_vertices	rotate(t_vertices *src, t_axis axis, GLfloat amount);
 t_env		expend(t_env *env);
 t_color		get_color(t_color start, t_color end, int pos, int max);
+t_mat4	get_proj_mat(GLfloat ratio, GLfloat alpha, GLfloat near, GLfloat far);
 
 #endif

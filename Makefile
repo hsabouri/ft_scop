@@ -6,7 +6,7 @@
 #    By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/11 11:06:31 by hsabouri          #+#    #+#              #
-#    Updated: 2018/05/02 21:46:28 by hsabouri         ###   ########.fr        #
+#    Updated: 2018/05/03 18:52:25 by hsabouri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRCNAM= main.c\
 		errors.c\
 		callbacks.c\
 		init.c\
+		init2.c\
 		parser.c\
 		parsing_functions.c\
 		verifications.c\
@@ -32,6 +33,7 @@ SRCNAM= main.c\
 		post_process2.c\
 		vec_basic.c\
 		vec_op.c\
+		mat_op.c\
 		tools.c\
 		axis.c\
 		display.c

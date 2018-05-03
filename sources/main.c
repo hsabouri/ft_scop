@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */ 
 /*   Created: 2018/04/11 11:22:10 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/05/03 11:01:05 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/05/03 21:08:32 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,22 @@
 
 void	update(t_env *env)
 {
-	int width;
-	int height;
+	static size_t	frame = 0;
+	t_mat4			proj_mat;
+	const t_mat4	model_mat = get_rot_mat(Y, frame * (M_PI / 1024));
+	const t_mat4	view_mat = mat_mult(mat_new(0.0, 0.0, -2.0, 1.0), get_rot_mat(X, M_PI / 9));
+	int				width;
+	int				height;
 
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glfwGetFramebufferSize(env->win, &width, &height);
 	glViewport(0, 0, width, height);
-	glClear(GL_COLOR_BUFFER_BIT);
+	printf("{%d, %d}\n", width, height);
+	proj_mat = get_proj_mat((float)width / (float)height, M_PI / 2, 0.01, 100.0);
 	glUseProgram(env->program);
+	glUniformMatrix4fv(env->proj_loc, 1, GL_FALSE, (const GLfloat*) &proj_mat);
+	glUniformMatrix4fv(env->model_loc, 1, GL_FALSE, (const GLfloat*) &model_mat);
+	glUniformMatrix4fv(env->view_loc, 1, GL_FALSE, (const GLfloat*) &view_mat);
 	glDrawArrays(GL_TRIANGLES, 0, env->vertices.size);
 	glfwSwapBuffers(env->win);
 	glfwPollEvents();
@@ -30,6 +39,7 @@ void	update(t_env *env)
 		ft_putnbr_fd(err, STDERR_FILENO);
 		ft_putendl_fd("", STDERR_FILENO);
 	}
+	frame += 1;
 }
 
 GLFWwindow	*init(void)
@@ -45,7 +55,7 @@ GLFWwindow	*init(void)
 	glfwMakeContextCurrent(win);
     gladLoadGLLoader((GLADloadproc) glfwGetProcAddress);
 	glfwSwapInterval(1);
-	return (win);
+ 	return (win);
 }
 
 int			main(int ac, char **av)
@@ -66,10 +76,15 @@ int			main(int ac, char **av)
 	env.indexes = triangulate(&parsed);
 	env.vertices = scale(&env.vertices, 0.2);
 	env.vertices = center(&env.vertices);
-	env.vertices = translate(&env.vertices, 0, 0, -0.5);
+	env.vertices = scale(&env.vertices, 1);
 	env = expend(&env);
 	env = assign_color(&env);
 	init_buffers(&env);
+	init_uniforms(&env);
+	glEnable(GL_DEPTH_TEST);
+	glDepthMask(GL_TRUE);
+	glDepthFunc(GL_LEQUAL);
+	printf("Displaying...\n");
 	while (!glfwWindowShouldClose(env.win))
 	{
 		update(&env);

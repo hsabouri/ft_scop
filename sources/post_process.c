@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/27 16:46:47 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/05/02 12:47:15 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/05/03 12:08:00 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ t_env		assign_color(t_env *env)
 	t_vec4			*vertices;
 
 	i = 0;
-	start = (t_color) {1.0, 0.92157, 0.24313, 1.0};
-	end = (t_color) {1.0, 0.29412, 0.24313, 1.0};
+	start = (t_color) {1.0, 0.0, 0.239, 1.0};
+	end = (t_color) {0.0, 1.0, 1.0, 1.0};
 	vertices = env->vertices.content;
 	while (i < env->indexes.size)
 	{
