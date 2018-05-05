@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/28 10:37:02 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/05/03 18:41:34 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/05/05 11:39:42 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,17 +78,4 @@ t_mat4	get_rot_mat(t_axis axis, GLfloat amount)
 	else
 		return (ROTZ(sin_t, cos_t));
 
-}
-
-t_mat4	get_proj_mat(GLfloat ratio, GLfloat fovy, GLfloat near, GLfloat far)
-{
-	const GLfloat	yscale = 1 / (fovy / 2);
-	const GLfloat	xscale = yscale / ratio;
-	const GLfloat	frustum = far - near;
-
-	return ((t_mat4) {\
-		xscale, 0.0, 0.0, 0.0,\
-		0.0, yscale, 0.0, 0.0,\
-		0.0, 0.0, -((far + near) / frustum), -1.0,\
-		0.0, 0.0, -((2 * near * far) / frustum), 0.0});
 }

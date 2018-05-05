@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 11:08:53 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/05/03 10:58:33 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/05/05 10:25:43 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ t_env	*init_buffers(t_env *env)
 		env->vertices.content, GL_STATIC_DRAW);
 	pos_loc = glGetAttribLocation(env->program, "vPos");
 	col_loc = glGetAttribLocation(env->program, "vCol");
+	printf("pos: %d - col: %d\n", pos_loc, col_loc);
     glEnableVertexAttribArray(pos_loc);
     glVertexAttribPointer(pos_loc, 4, GL_FLOAT, GL_FALSE,
                           sizeof(t_vec4), (void*) 0);

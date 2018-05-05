@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */ 
 /*   Created: 2018/04/11 11:22:10 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/05/03 21:08:32 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/05/05 11:41:12 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ void	update(t_env *env)
 {
 	static size_t	frame = 0;
 	t_mat4			proj_mat;
-	const t_mat4	model_mat = get_rot_mat(Y, frame * (M_PI / 1024));
+	const t_mat4	model_mat = get_rot_mat(Y, frame * (M_PI / 128));
 	const t_mat4	view_mat = mat_mult(mat_new(0.0, 0.0, -2.0, 1.0), get_rot_mat(X, M_PI / 9));
+	const t_color	start = RED;
+	const t_color	end = YELLOW;
 	int				width;
 	int				height;
 
@@ -25,11 +27,14 @@ void	update(t_env *env)
 	glfwGetFramebufferSize(env->win, &width, &height);
 	glViewport(0, 0, width, height);
 	printf("{%d, %d}\n", width, height);
-	proj_mat = get_proj_mat((float)width / (float)height, M_PI / 2, 0.01, 100.0);
+	proj_mat = get_proj_mat((float)width / (float)height, M_PI / 2, 0.0001, 1000.0);
 	glUseProgram(env->program);
 	glUniformMatrix4fv(env->proj_loc, 1, GL_FALSE, (const GLfloat*) &proj_mat);
 	glUniformMatrix4fv(env->model_loc, 1, GL_FALSE, (const GLfloat*) &model_mat);
 	glUniformMatrix4fv(env->view_loc, 1, GL_FALSE, (const GLfloat*) &view_mat);
+	glUniform4f(env->state_loc, 0.5, 0, 1, 0);
+	glUniform4fv(env->start_loc, 1, (GLfloat*) &start);
+	glUniform4fv(env->end_loc, 1, (GLfloat*) &end);
 	glDrawArrays(GL_TRIANGLES, 0, env->vertices.size);
 	glfwSwapBuffers(env->win);
 	glfwPollEvents();
@@ -46,6 +51,7 @@ GLFWwindow	*init(void)
 {
 	GLFWwindow	*win;
 
+	srand(time(NULL));
 	if (!glfwInit())
 		error("GLFW", "Failed to initialize glfw");
 	init_version();
@@ -76,7 +82,6 @@ int			main(int ac, char **av)
 	env.indexes = triangulate(&parsed);
 	env.vertices = scale(&env.vertices, 0.2);
 	env.vertices = center(&env.vertices);
-	env.vertices = scale(&env.vertices, 1);
 	env = expend(&env);
 	env = assign_color(&env);
 	init_buffers(&env);

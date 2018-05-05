@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/27 16:46:47 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/05/03 12:08:00 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/05/04 09:03:30 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,29 +56,6 @@ t_tris		triangulate(t_parsed *parsed)
 		iterator += 1;
 	}
 	return (res);
-}
-
-t_env		assign_color(t_env *env)
-{
-	size_t			i;
-	t_color			start;
-	t_color			end;
-	t_color			current;
-	t_vec4			*vertices;
-
-	i = 0;
-	start = (t_color) {1.0, 0.0, 0.239, 1.0};
-	end = (t_color) {0.0, 1.0, 1.0, 1.0};
-	vertices = env->vertices.content;
-	while (i < env->indexes.size)
-	{
-		current = get_color(start, end, i, env->indexes.size);
-		vertices[env->indexes.content[i].a].color = current;
-		vertices[env->indexes.content[i].b].color = current;
-		vertices[env->indexes.content[i].c].color = current;
-		i++;
-	}
-	return (*env);
 }
 
 t_vertices		scale(t_vertices *src, GLfloat amount)

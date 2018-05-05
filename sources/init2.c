@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */ 
 /*   Created: 2018/04/11 11:22:10 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/05/03 17:52:35 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/05/05 10:45:40 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,18 @@
 
 t_env	*init_uniforms(t_env *env)
 {
-	const GLuint proj_loc = glGetUniformLocation(env->program, "Proj");
-	const GLuint view_loc = glGetUniformLocation(env->program, "View");
-	const GLuint model_loc = glGetUniformLocation(env->program, "Model");
-
-	env->proj_loc = proj_loc;
-	env->view_loc = view_loc;
-	env->model_loc = model_loc;
+	GLint err;
+	env->proj_loc = glGetUniformLocation(env->program, "Proj");
+	env->view_loc = glGetUniformLocation(env->program, "View");
+	env->model_loc = glGetUniformLocation(env->program, "Model");
+	env->start_loc = glGetUniformLocation(env->program, "Start");
+	env->end_loc = glGetUniformLocation(env->program, "End");
+	env->state_loc = glGetUniformLocation(env->program, "State");
+	err = glGetError();
+	if (err != GL_NO_ERROR)
+	{
+		printf("error : %d\n", err);
+		error("OPENGL", "Could not access uniforms.");
+	}
 	return (env);
 }

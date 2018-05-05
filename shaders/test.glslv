@@ -1,5 +1,5 @@
 #version 410
-#
+
 attribute vec4 	vPos;
 attribute vec4 	vCol;
 varying vec4	color;

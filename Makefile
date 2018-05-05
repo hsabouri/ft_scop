@@ -6,7 +6,7 @@
 #    By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/11 11:06:31 by hsabouri          #+#    #+#              #
-#    Updated: 2018/05/03 18:52:25 by hsabouri         ###   ########.fr        #
+#    Updated: 2018/05/04 09:25:19 by hsabouri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ SRCNAM= main.c\
 		vec_op.c\
 		mat_op.c\
 		tools.c\
+		colors.c\
 		axis.c\
 		display.c
 INCNAM= ft_scop.h\

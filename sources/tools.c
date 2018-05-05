@@ -6,29 +6,12 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/28 13:46:12 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/04/28 17:53:27 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/05/04 19:17:02 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "types.h"
 #include "vec.h"
-
-t_color			get_color(t_color start, t_color end, int pos, int max)
-{
-	t_color	iter;
-	t_color	res;
-
-	iter.r = (end.r - start.r) / max;
-	iter.g = (end.g - start.g) / max;
-	iter.b = (end.b - start.b) / max;
-	iter.a = (end.a - start.a) / max;
-	res = start;
-	res.r += iter.r * pos;
-	res.g += iter.g * pos;
-	res.b += iter.b * pos;
-	res.a += iter.a * pos;
-	return (res);
-}
 
 static t_vec4	compare_sub(t_vec4 dst, t_vec4 current)
 {
