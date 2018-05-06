@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 11:19:46 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/05/05 11:36:34 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/05/05 16:56:29 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # include "parser.h"
 # include "types.h"
 # include "vec.h"
+# include "tga.h"
 # include <math.h>
 # include <time.h>
 # include <stdlib.h>
@@ -44,18 +45,22 @@
 
 # define COLOR(a, b, c) (t_color) {btof(a), btof(b), btof(c), 1.0}
 
+typedef struct	s_loc
+{
+	GLuint		view;
+	GLuint		model;
+	GLuint		proj;
+	GLuint		start;
+	GLuint		end;
+	GLuint		state;
+}				t_loc;
 
 typedef struct	s_env
 {
 	GLuint		vao_id;
 	GLuint		vb_id;
 	GLuint		ib_id;
-	GLuint		view_loc;
-	GLuint		model_loc;
-	GLuint		proj_loc;
-	GLuint		start_loc;
-	GLuint		end_loc;
-	GLuint		state_loc;
+	t_loc		loc;
 	t_mat4		rot;
 	t_mat4		proj;
 	t_mat4		camera;
@@ -63,6 +68,8 @@ typedef struct	s_env
 	t_tris		indexes;
 	GLFWwindow	*win;
 	GLuint		program;
+	t_img		image;
+	GLuint		texture;
 }				t_env;
 
 int				error(const char *error_type, const char *to_display);
@@ -82,6 +89,7 @@ t_vertices		center(t_vertices *src);
 t_vertices		translate(t_vertices *src, GLfloat x, GLfloat y, GLfloat z);
 t_vertices		scale(t_vertices *src, GLfloat amount);
 t_vertices		rotate(t_vertices *src, t_axis axis, GLfloat amount);
+t_vertices		reduce(t_vertices *vertices);
 t_env			expend(t_env *env);
 t_color			get_color(t_color start, t_color end, int pos, int max);
 t_mat4			get_proj_mat(GLfloat ratio, GLfloat alpha, GLfloat near, GLfloat far);

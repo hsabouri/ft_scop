@@ -9,5 +9,6 @@ uniform vec4	End;
 void main(void)
 {
 	float z = gl_FragCoord.z / gl_FragCoord.w;
-	gl_FragColor = color * State.x + (Start + (End - Start) * z) * (1 - State.x);
+	gl_FragColor = color * State.x +\
+				   (Start + (End - Start) * (z * State.z)) * (1 - State.x);
 }

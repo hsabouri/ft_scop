@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */ 
 /*   Created: 2018/04/11 11:22:10 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/05/05 11:41:12 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/05/05 18:23:22 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ void	update(t_env *env)
 	printf("{%d, %d}\n", width, height);
 	proj_mat = get_proj_mat((float)width / (float)height, M_PI / 2, 0.0001, 1000.0);
 	glUseProgram(env->program);
-	glUniformMatrix4fv(env->proj_loc, 1, GL_FALSE, (const GLfloat*) &proj_mat);
-	glUniformMatrix4fv(env->model_loc, 1, GL_FALSE, (const GLfloat*) &model_mat);
-	glUniformMatrix4fv(env->view_loc, 1, GL_FALSE, (const GLfloat*) &view_mat);
-	glUniform4f(env->state_loc, 0.5, 0, 1, 0);
-	glUniform4fv(env->start_loc, 1, (GLfloat*) &start);
-	glUniform4fv(env->end_loc, 1, (GLfloat*) &end);
+	glUniformMatrix4fv(env->loc.proj, 1, GL_FALSE, (const GLfloat*) &proj_mat);
+	glUniformMatrix4fv(env->loc.model, 1, GL_FALSE, (const GLfloat*) &model_mat);
+	glUniformMatrix4fv(env->loc.view, 1, GL_FALSE, (const GLfloat*) &view_mat);
+	glUniform4f(env->loc.state, 0, 0, 0.5, 0);
+	glUniform4fv(env->loc.start, 1, (GLfloat*) &start);
+	glUniform4fv(env->loc.end, 1, (GLfloat*) &end);
 	glDrawArrays(GL_TRIANGLES, 0, env->vertices.size);
 	glfwSwapBuffers(env->win);
 	glfwPollEvents();
@@ -80,8 +80,8 @@ int			main(int ac, char **av)
 	env.program = init_program();
 	env.vertices = parsed.vertices;
 	env.indexes = triangulate(&parsed);
-	env.vertices = scale(&env.vertices, 0.2);
 	env.vertices = center(&env.vertices);
+	env.vertices = reduce(&env.vertices);
 	env = expend(&env);
 	env = assign_color(&env);
 	init_buffers(&env);
