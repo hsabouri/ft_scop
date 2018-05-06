@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 11:19:46 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/05/05 16:56:29 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/05/06 16:12:15 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int				error_line(const size_t line, const char *error_type,\
 void			init_version(void);
 GLuint			init_program(void);
 t_env			*init_buffers(t_env *env);
+t_env			*init_textures(t_env *env);
 t_env			*init_uniforms(t_env *env);
 void			set_error_callbacks(void);
 void			set_callbacks(GLFWwindow *win);
@@ -85,6 +86,7 @@ t_tris			triangulate(t_parsed *parsed);
 t_vertices		normalize_all(t_vertices *src);
 t_vec4			find_center(t_vertices *buf);
 t_env			assign_color(t_env *env);
+t_env			assign_texture_coords(t_env *env);
 t_vertices		center(t_vertices *src);
 t_vertices		translate(t_vertices *src, GLfloat x, GLfloat y, GLfloat z);
 t_vertices		scale(t_vertices *src, GLfloat amount);

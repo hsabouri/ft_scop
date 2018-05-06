@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */ 
 /*   Created: 2018/04/11 11:22:10 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/05/05 18:23:22 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/05/06 16:20:54 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,9 @@ int			main(int ac, char **av)
 	env.vertices = reduce(&env.vertices);
 	env = expend(&env);
 	env = assign_color(&env);
+	env = assign_texture_coords(&env);
 	init_buffers(&env);
+	init_textures(&env);
 	init_uniforms(&env);
 	glEnable(GL_DEPTH_TEST);
 	glDepthMask(GL_TRUE);

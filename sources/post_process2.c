@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/27 16:46:47 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/05/05 16:57:28 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/05/06 16:31:48 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,16 @@ t_env	expend(t_env *env)
 	while (i < env->indexes.size)
 	{
 		new_verts.content[i * 3 + 0] = vertices[indexes[i].a];
+		new_verts.content[i * 3 + 0].tex.u = 0;
+		new_verts.content[i * 3 + 0].tex.v = 0;
 		indexes[i].a = i * 3 + 0;
 		new_verts.content[i * 3 + 1] = vertices[indexes[i].b];
+		new_verts.content[i * 3 + 1].tex.u = 0.5;
+		new_verts.content[i * 3 + 1].tex.v = 1;
 		indexes[i].b = i * 3 + 1;
 		new_verts.content[i * 3 + 2] = vertices[indexes[i].c];
+		new_verts.content[i * 3 + 2].tex.u = 1;
+		new_verts.content[i * 3 + 2].tex.v = 0;
 		indexes[i].c = i * 3 + 2;
 		i++;
 	}
@@ -74,4 +80,20 @@ t_vertices	reduce(t_vertices *vertices)
 		i++;
 	}
 	return (*vertices);
+}
+
+t_env	assign_texture_coords(t_env *env)
+{
+	size_t	i;
+	t_vec4	*vertices;
+
+	i = 0;
+	vertices = env->vertices.content;
+	while (i < env->vertices.size)
+	{
+		vertices[i].tex.u = vertices[i].z / 2 + 1;
+		vertices[i].tex.v = vertices[i].y / 2 + 1;
+		i++;
+	}
+	return (*env);
 }
