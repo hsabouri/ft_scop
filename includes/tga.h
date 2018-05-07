@@ -29,7 +29,7 @@ typedef struct	s_img
 {
 	unsigned int	width;
 	unsigned int	height;
-	t_color			*content;
+	t_abgr			*content;
 }				t_img;
 
 int				error(const char *error_type, const char *to_display);

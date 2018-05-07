@@ -1,11 +1,11 @@
 #version 410
 
-attribute vec4 	vPos;
-attribute vec4 	vCol;
-attribute vec2 	vTex;
+in vec4 	vPos;
+in vec4 	vCol;
+in vec2 	vTex;
 
-varying vec4	color;
-varying vec2	tex;
+out vec4	color;
+out vec2	tex;
 
 uniform	mat4	View;
 uniform	mat4	Model;

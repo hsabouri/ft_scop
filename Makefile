@@ -58,21 +58,21 @@ CC = clang
 #CFLAGS += -Werror
 CFLAGS += -g
 CFLAGS += -I$(LIBFTINC) -I$(LIBGLFWINC) -I$(INCDIR)
-
+LDFLAGS += -L$(LIBGLFWDIR)
 
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
 CFLAGS += -D LINUX `pkg-config --cflags glfw3` -Ilib/GLFW/deps/ -Ilib/GLFW/include/ 
-LDFLAGS += -LGLFW/src `pkg-config --static --libs glfw3` -Ilib/GLFW/deps/ 
+LDFLAGS += `pkg-config --static --libs glfw3` -Ilib/GLFW/deps/ 
 SPECIAL = lib/GLFW/deps/glad.c
 endif
 ifeq ($(UNAME_S),Darwin)
 CFLAGS += -D OSX
-LDFLAGS += -lgflw3 -framework Cocoa -framework OpenGL -framework IOKit -framework CoreVideo
+LDFLAGS += -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit -framework CoreVideo
 SPECIAL = 
 endif
 
-LDFLAGS += -L$(LIBFTDIR) -lft -L$(LIBGLFWDIR)
+LDFLAGS += -L$(LIBFTDIR) -lft
 
 all: libs $(NAME)
 

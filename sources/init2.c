@@ -35,7 +35,7 @@ t_env	*init_textures(t_env *env)
 {
 	GLint err;
 
-	env->image = parse_tga("assets/licorne.tga");
+	env->image = parse_tga("assets/brick.tga");
 	glGenTextures(1, &env->texture);
 	glBindTexture(GL_TEXTURE_2D, env->texture);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, env->image.width,\

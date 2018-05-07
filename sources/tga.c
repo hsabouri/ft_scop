@@ -22,24 +22,25 @@ static void		verif_header(unsigned char *mem)
 		error("TGA", "Bits per pixel needs to be 32 or 24.");
 }
 
-static t_color	*tga_expend(char *src, size_t size, unsigned int bpp)
+static t_abgr	*tga_expend(unsigned char *src, unsigned int width,\
+unsigned int height, unsigned int bpp)
 {
 	size_t	i;
 	size_t	k;
-	t_color	*res;
+	t_abgr	*res;
 
 	i = 0;
 	k = 0;
-	res = (t_color *)malloc(sizeof(t_color) * size);
-	while (i < size)
+	res = (t_abgr *)malloc(sizeof(t_abgr) * width * height);
+	while (i < width * height)
 	{
-		res[i].r = (float)src[k + 0] / 255.0;
-		res[i].g = (float)src[k + 1] / 255.0;
-		res[i].b = (float)src[k + 2] / 255.0;
+		res[i].b = src[((k % height) * width + k / height) + 0];
+		res[i].g = src[((k % height) * width + k / height) + 1];
+		res[i].r = src[((k % height) * width + k / height) + 2];
 		if (bpp == 32)
-			res[i].a = (float)src[k + 3] / 255.0;
+			res[i].a = src[((k % height) * width + k / height) + 3];
 		else
-			res[i].a = 1.0;
+			res[i].a = 255;
 		k += 3;
 		if (bpp == 32)
 			k++;
@@ -54,7 +55,7 @@ t_img			parse_tga(const char *path)
 	const int		fd = open(path, O_RDONLY);
 	unsigned char	header[18];
 	struct stat		info;
-	char			*raw;
+	unsigned char	*raw;
 	t_img			res;
 
 	if (fd < 0)
@@ -63,10 +64,10 @@ t_img			parse_tga(const char *path)
 		error("TGA", "Can't even fit header !");
 	verif_header(header);
 	stat(path, &info);
-	raw = (char *)malloc(sizeof(char) * (info.st_size - 18));
-	read(fd, (void *)raw, info.st_size - 18);
+	raw = (unsigned char *)malloc(sizeof(unsigned char) * (info.st_size - 18));
+	read(fd, raw, info.st_size - 18);
 	res.content = tga_expend(raw,\
-	((short *)header)[WIDTH] * ((short *)header)[HEIGHT], header[BPP]);
+	((short *)header)[WIDTH], ((short *)header)[HEIGHT], header[BPP]);
 	return ((t_img) {
 		((short *)header)[HEIGHT],
 		((short *)header)[WIDTH],

@@ -11,6 +11,15 @@
 /* ************************************************************************** */
 
 #include "ft_scop.h"
+#ifdef __APPLE__
+
+typedef void*	GLADloadproc;
+void	gladLoadGLLoader(GLADloadproc addr)
+{
+	(void)addr;
+}
+
+#endif
 
 void	update(t_env *env)
 {
