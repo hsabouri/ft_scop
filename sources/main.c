@@ -6,20 +6,11 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */ 
 /*   Created: 2018/04/11 11:22:10 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/05/06 16:20:54 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/05/08 14:45:02 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_scop.h"
-#ifdef __APPLE__
-
-typedef void*	GLADloadproc;
-void	gladLoadGLLoader(GLADloadproc addr)
-{
-	(void)addr;
-}
-
-#endif
 
 void	update(t_env *env)
 {
@@ -56,51 +47,18 @@ void	update(t_env *env)
 	frame += 1;
 }
 
-GLFWwindow	*init(void)
-{
-	GLFWwindow	*win;
-
-	srand(time(NULL));
-	if (!glfwInit())
-		error("GLFW", "Failed to initialize glfw");
-	init_version();
-	win = glfwCreateWindow(640, 480, "ft_scop", NULL, NULL);
-	if (!win)
-		error("GLFW", "Failed to initilize window.");
-	glfwMakeContextCurrent(win);
-    gladLoadGLLoader((GLADloadproc) glfwGetProcAddress);
-	glfwSwapInterval(1);
- 	return (win);
-}
-
 int			main(int ac, char **av)
 {
-	t_parsed	parsed;
 	t_env		env;
+	char		*obj_path;
+	static char		*tga_path = "assets/licorne.tga";
 
-	if (ac >= 2)
-		parsed = parse(av[1]);
-	else
-		error("usage", "ft_scop file.obj");
-	verify(&parsed);
-	set_error_callbacks();
-	env.win = init();
-	set_callbacks(env.win);
-	env.program = init_program();
-	env.vertices = parsed.vertices;
-	env.indexes = triangulate(&parsed);
-	env.vertices = center(&env.vertices);
-	env.vertices = reduce(&env.vertices);
-	env = expend(&env);
-	env = assign_color(&env);
-	env = assign_texture_coords(&env);
-	init_buffers(&env);
-	init_textures(&env);
-	init_uniforms(&env);
-	glEnable(GL_DEPTH_TEST);
-	glDepthMask(GL_TRUE);
-	glDepthFunc(GL_LEQUAL);
-	printf("Displaying...\n");
+	if (ac < 2)
+		error("usage", "ft_scop file.obj [texture.tga]");
+	obj_path = av[1];
+	if (ac >= 3)
+		tga_path = av[2];
+	env = init_env(obj_path, tga_path);
 	while (!glfwWindowShouldClose(env.win))
 	{
 		update(&env);

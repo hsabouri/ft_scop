@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 11:19:46 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/05/06 16:12:15 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/05/08 14:30:50 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,12 @@ typedef struct	s_env
 	GLuint		texture;
 }				t_env;
 
+t_env			init_env(const char *obj_path, const char *tga_path);
+GLFWwindow		*init_window(void);
+
 int				error(const char *error_type, const char *to_display);
 int				error_line(const size_t line, const char *error_type,\
 				const char *to_display);
-void			init_version(void);
 GLuint			init_program(void);
 t_env			*init_buffers(t_env *env);
 t_env			*init_textures(t_env *env);

@@ -6,19 +6,11 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 11:08:53 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/05/06 16:13:44 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/05/08 13:28:59 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_scop.h"
-
-void		init_version(void)
-{
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
-	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-}
 
 char		*get_shader_str(const char *path)
 {

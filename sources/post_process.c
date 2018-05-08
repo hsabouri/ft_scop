@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/27 16:46:47 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/05/04 09:03:30 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/05/08 14:12:35 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static size_t	sizeit(t_quads quads)
 
 t_tris		triangulate(t_parsed *parsed)
 {
-	size_t		iterator;
+	size_t	iterator;
 	t_tris	res;
 
 	if (!(res.content = (t_tri *)malloc(sizeof(t_tri) * sizeit(parsed->quads))))

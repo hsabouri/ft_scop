@@ -6,7 +6,7 @@
 #    By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/11 11:06:31 by hsabouri          #+#    #+#              #
-#    Updated: 2018/05/05 14:22:21 by hsabouri         ###   ########.fr        #
+#    Updated: 2018/05/08 14:43:13 by hsabouri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,8 @@ SRCNAM= main.c\
 		errors.c\
 		callbacks.c\
 		init.c\
+		init_context.c\
+		init_env.c\
 		init2.c\
 		parser.c\
 		parsing_functions.c\
