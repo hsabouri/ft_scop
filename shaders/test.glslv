@@ -14,6 +14,6 @@ uniform mat4	Proj;
 void main(void)
 {
 	gl_Position = (Proj * View * Model) * vPos;
-	color = vCol * 1.0;
+	color = vCol;
 	tex = vTex;
 }

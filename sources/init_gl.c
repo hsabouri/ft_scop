@@ -1,18 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   init_gl.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hsabouri <hsabouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/13 11:08:53 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/05/09 12:51:35 by hsabouri         ###   ########.fr       */
+/*   Created: 2018/05/09 12:57:53 by hsabouri          #+#    #+#             */
+/*   Updated: 2018/05/09 13:20:39 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_scop.h"
 
-char		*get_shader_str(const char *path)
+static void	gl_err(const char *str)
+{
+	const GLint	err = glGetError();
+
+	if (err != GL_NO_ERROR)
+	{
+		printf("error : %d\n", err);
+		error("OPENGL", str);
+	}
+}
+
+static char		*get_shader_str(const char *path)
 {
 	int			fd;
 	struct stat	info;
@@ -86,7 +97,6 @@ t_env	*init_buffers(t_env *env)
 	col_loc = glGetAttribLocation(env->program, "vCol");
 	pos_loc = glGetAttribLocation(env->program, "vPos");
 	tex_loc = glGetAttribLocation(env->program, "vTex");
-	printf("pos: %d - col: %d - tex: %d\n", pos_loc, col_loc, tex_loc);
     glEnableVertexAttribArray(pos_loc);
     glVertexAttribPointer(pos_loc, 4, GL_FLOAT, GL_FALSE,
                           sizeof(t_vec4), (void*) 0);
@@ -96,11 +106,6 @@ t_env	*init_buffers(t_env *env)
     glEnableVertexAttribArray(tex_loc);
     glVertexAttribPointer(tex_loc, 2, GL_FLOAT, GL_FALSE,
                           sizeof(t_vec4), (void*) (sizeof(GLfloat) * 8));
-	err = glGetError();
-	if (err != GL_NO_ERROR)
-	{
-		printf("error : %d\n", err);
-		error("OPENGL", "Could not allocate memory.");
-	}
+	gl_err("Could not build buffers.");
 	return (env);
 }

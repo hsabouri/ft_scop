@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 11:19:46 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/05/08 14:30:50 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/05/09 14:23:47 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ typedef struct	s_env
 
 t_env			init_env(const char *obj_path, const char *tga_path);
 GLFWwindow		*init_window(void);
+void			update(t_env *env);
 
 int				error(const char *error_type, const char *to_display);
 int				error_line(const size_t line, const char *error_type,\
