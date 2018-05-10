@@ -6,7 +6,7 @@
 /*   By: hsabouri <hsabouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 13:22:27 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/05/10 11:28:26 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/05/10 13:24:00 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ static void		uniforms(t_env *env, t_update *u)
 				env->states.colors.z, 1.0);
 	glUniform4fv(env->loc.start, 1, (GLfloat*) &u->start);
 	glUniform4fv(env->loc.end, 1, (GLfloat*) &u->end);
+	glUniform1i(env->loc.texture_mode, env->states.texture_mod);
 }
 
 static t_env	*init_values(t_env *env, t_update *u)

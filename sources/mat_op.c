@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/28 10:37:02 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/05/05 11:40:55 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/05/10 12:44:30 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_mat4	get_proj_mat(GLfloat ratio, GLfloat fovy, GLfloat near, GLfloat far)
 		xscale, 0.0, 0.0, 0.0,\
 		0.0, yscale, 0.0, 0.0,\
 		0.0, 0.0, -((far + near) / frustum), -1.0,\
-		0.0, 0.0, -((2 * near * far) / frustum) - 1, 0.0});
+		0.0, 0.0, -((2 * near * far) / frustum) - 2, 0.0});
 }
 
 t_mat4	mat_mult(t_mat4 l, t_mat4 r)

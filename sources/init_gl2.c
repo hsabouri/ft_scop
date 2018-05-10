@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */ 
 /*   Created: 2018/04/11 11:22:10 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/05/09 21:58:10 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/05/10 13:24:18 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_env	*init_uniforms(t_env *env)
 	env->loc.start = glGetUniformLocation(env->program, "Start");
 	env->loc.end = glGetUniformLocation(env->program, "End");
 	env->loc.state = glGetUniformLocation(env->program, "State");
+	env->loc.texture_mode = glGetUniformLocation(env->program, "TextureMode");
 	err = glGetError();
 	if (err != GL_NO_ERROR)
 	{

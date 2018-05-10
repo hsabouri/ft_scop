@@ -6,7 +6,7 @@
 /*   By: hsabouri <hsabouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 19:19:42 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/05/10 11:25:40 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/05/10 12:53:00 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,20 @@ static t_env	*key_derivate_actions(t_env *env)
 		env->states.colors.z = 1.0;
 	return (env);
 }
+
+static t_env	*key_actions2(t_env *env)
+{
+	if (env->k_states[GLFW_KEY_Z - 38])
+		env->states.texture_mod = 1;
+	if (env->k_states[GLFW_KEY_X - 38])
+		env->states.texture_mod = 2;
+	if (env->k_states[GLFW_KEY_Y - 38])
+		env->states.texture_mod = 3;
+	if (env->k_states[GLFW_KEY_R - 38])
+		env->states.texture_mod = 0;
+	return (env);
+}
+
 t_env			*key_actions(t_env *env)
 {
 	if (env->k_states[GLFW_KEY_A - 38])
@@ -51,14 +65,15 @@ t_env			*key_actions(t_env *env)
 		env->states.view.z *= 1.02;
 	if (env->k_states[GLFW_KEY_E - 38])
 		env->states.view.z /= 1.02;
-	if (env->k_states[GLFW_KEY_1 - 38] || env->k_states[GLFW_KEY_2 - 38])
+	if (env->k_states[GLFW_KEY_1 - 38])
 	{
 		env->states.color_mov = (env->states.color_mov) ? 0 : 1;
 		env->k_states[GLFW_KEY_1 - 38] = 0;
-		env->k_states[GLFW_KEY_2 - 38] = 0;
 	}
-	env = key_derivate_actions(env);
-	return (env);
+	if (env->k_states[GLFW_KEY_LEFT_BRACKET - 38])
+		env->states.colors.y -= (env->states.colors.y > 0.05) ? 0.05 : 0.0;
+	if (env->k_states[GLFW_KEY_RIGHT_BRACKET - 38])
+		env->states.colors.y += (env->states.colors.y < 0.95) ? 0.05 : 0.0;
+	env = key_actions2(env);
+	return (key_derivate_actions(env));
 }
-
-

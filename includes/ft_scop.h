@@ -4,8 +4,9 @@
 /*   ft_scop.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */ /*   Created: 2018/04/11 11:19:46 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/05/09 21:23:12 by hsabouri         ###   ########.fr       */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/04/11 11:19:46 by hsabouri          #+#    #+#             */
+/*   Updated: 2018/05/10 13:23:38 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +55,7 @@ typedef struct	s_loc
 	GLuint		start;
 	GLuint		end;
 	GLuint		state;
+	GLuint		texture_mode;
 }				t_loc;
 
 typedef struct	s_states
@@ -62,6 +64,7 @@ typedef struct	s_states
 	t_vec4		view;
 	t_vec4		colors;
 	int			color_mov;
+	int			texture_mod;
 }				t_states;
 
 typedef struct	s_env
