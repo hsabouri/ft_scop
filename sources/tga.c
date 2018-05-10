@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 11:22:10 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/05/06 16:35:03 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/05/09 22:01:52 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ t_img			parse_tga(const char *path)
 	unsigned char	*raw;
 	t_img			res;
 
-	if (fd < 0)
+	if (!fd || access(path, F_OK) == -1)
 		error("TGA", "Can't open tga file.");
 	if (read(fd, header, 18) < 18)
 		error("TGA", "Can't even fit header !");

@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 11:08:53 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/05/08 14:05:25 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/05/09 20:56:41 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ GLFWwindow		*init_window(void)
 	glfwMakeContextCurrent(win);
     gladLoadGLLoader((GLADloadproc) glfwGetProcAddress);
 	glfwSwapInterval(1);
+	glfwSetInputMode(win, GLFW_STICKY_KEYS, 1);
+	glfwSetKeyCallback(win, key_callback);
 	set_error_callbacks();
 	set_callbacks(win);
  	return (win);
 }
-
-

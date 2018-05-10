@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/27 16:46:47 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/05/09 14:27:29 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/05/09 22:11:17 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ t_env	assign_texture_coords(t_env *env)
 	vertices = env->vertices.content;
 	while (i < env->vertices.size)
 	{
-		vertices[i].tex.u = vertices[i].x / 2 + 1;
-		vertices[i].tex.v = vertices[i].y / 2 + 1;
+		vertices[i].tex.u = vertices[i].x * 2;
+		vertices[i].tex.v = vertices[i].y + 10 * ((int)vertices[i].x);
 		i++;
 	}
 	return (*env);

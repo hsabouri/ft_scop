@@ -4,9 +4,8 @@
 /*   ft_scop.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/11 11:19:46 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/05/09 14:23:47 by hsabouri         ###   ########.fr       */
+/*                                                +#+#+#+#+#+   +#+           */ /*   Created: 2018/04/11 11:19:46 by hsabouri          #+#    #+#             */
+/*   Updated: 2018/05/09 21:23:12 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +44,8 @@
 
 # define COLOR(a, b, c) (t_color) {btof(a), btof(b), btof(c), 1.0}
 
+# define ROT_SPEED M_PI/128
+
 typedef struct	s_loc
 {
 	GLuint		view;
@@ -55,27 +56,37 @@ typedef struct	s_loc
 	GLuint		state;
 }				t_loc;
 
+typedef struct	s_states
+{
+	t_vec2		rot;
+	t_vec4		view;
+	t_vec4		colors;
+	int			color_mov;
+}				t_states;
+
 typedef struct	s_env
 {
 	GLuint		vao_id;
 	GLuint		vb_id;
 	GLuint		ib_id;
 	t_loc		loc;
-	t_mat4		rot;
-	t_mat4		proj;
-	t_mat4		camera;
 	t_vertices	vertices;
 	t_tris		indexes;
 	GLFWwindow	*win;
 	GLuint		program;
 	t_img		image;
 	GLuint		texture;
+	int			*k_states;
+	t_states	states;
 }				t_env;
 
-t_env			init_env(const char *obj_path, const char *tga_path);
+t_env			*ft_get_env(void);
+t_env			*init_env(const char *obj_path, const char *tga_path);
 GLFWwindow		*init_window(void);
 void			update(t_env *env);
-
+void			key_callback(GLFWwindow *win, int key, int scancode,\
+				int act, int mods);
+t_env			*key_actions(t_env *env);
 int				error(const char *error_type, const char *to_display);
 int				error_line(const size_t line, const char *error_type,\
 				const char *to_display);

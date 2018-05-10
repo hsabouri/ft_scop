@@ -14,7 +14,7 @@ void main(void)
 	vec4	tmp2;
 	float z = gl_FragCoord.z / gl_FragCoord.w;
 
-	tmp = mix(color * State.x, (Start + (End - Start) * (z * State.z)) * (1 - State.x), State.y);
+	tmp = mix(color, Start + (End - Start) * z, State.y);
 	tmp2 = texture(Texture, tex);
 	gl_FragColor = mix(tmp, tmp2, State.z);
 }

@@ -6,7 +6,7 @@
 #    By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/11 11:06:31 by hsabouri          #+#    #+#              #
-#    Updated: 2018/05/09 14:24:04 by hsabouri         ###   ########.fr        #
+#    Updated: 2018/05/09 20:57:30 by hsabouri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRCNAM= main.c\
 		errors.c\
 		update.c\
 		callbacks.c\
+		keyboard.c\
 		init_context.c\
 		init_env.c\
 		init_gl.c\

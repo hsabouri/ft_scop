@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init2.c                                            :+:      :+:    :+:   */
+/*   init_gl2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */ 
 /*   Created: 2018/04/11 11:22:10 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/05/06 15:00:00 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/05/09 21:58:10 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ t_env	*init_textures(t_env *env)
 {
 	GLint err;
 
-	env->image = parse_tga("assets/brick.tga");
 	glGenTextures(1, &env->texture);
 	glBindTexture(GL_TEXTURE_2D, env->texture);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, env->image.width,\
