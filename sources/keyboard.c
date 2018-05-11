@@ -6,7 +6,7 @@
 /*   By: hsabouri <hsabouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 19:19:42 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/05/10 12:53:00 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/05/10 15:55:12 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,14 @@ static t_env	*key_actions2(t_env *env)
 		env->states.texture_mod = 3;
 	if (env->k_states[GLFW_KEY_R - 38])
 		env->states.texture_mod = 0;
+	if (env->k_states[GLFW_KEY_LEFT - 38])
+		env->states.model.x -= 0.05;
+	if (env->k_states[GLFW_KEY_RIGHT - 38])
+		env->states.model.x += 0.05;
+	if (env->k_states[GLFW_KEY_UP - 38])
+		env->states.model.y += 0.05;
+	if (env->k_states[GLFW_KEY_DOWN - 38])
+		env->states.model.y -= 0.05;
 	return (env);
 }
 
@@ -62,9 +70,9 @@ t_env			*key_actions(t_env *env)
 	if (env->k_states[GLFW_KEY_S - 38])
 		env->states.rot.v += 1.0;
 	if (env->k_states[GLFW_KEY_Q - 38])
-		env->states.view.z *= 1.02;
+		env->states.model.z += 0.05;
 	if (env->k_states[GLFW_KEY_E - 38])
-		env->states.view.z /= 1.02;
+		env->states.model.z -= 0.05;
 	if (env->k_states[GLFW_KEY_1 - 38])
 	{
 		env->states.color_mov = (env->states.color_mov) ? 0 : 1;

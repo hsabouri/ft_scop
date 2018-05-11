@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 11:22:10 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/05/09 22:01:52 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/05/11 23:06:05 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,22 +29,22 @@ unsigned int height, unsigned int bpp)
 	size_t	k;
 	t_abgr	*res;
 
-	i = 0;
+	i = width * height - 1;
 	k = 0;
 	res = (t_abgr *)malloc(sizeof(t_abgr) * width * height);
-	while (i < width * height)
+	while (i > 0)
 	{
-		res[i].b = src[((k % height) * width + k / height) + 0];
-		res[i].g = src[((k % height) * width + k / height) + 1];
-		res[i].r = src[((k % height) * width + k / height) + 2];
+		res[i].b = src[k + 0];
+		res[i].g = src[k + 1];
+		res[i].r = src[k + 2];
 		if (bpp == 32)
-			res[i].a = src[((k % height) * width + k / height) + 3];
+			res[i].a = src[k + 3];
 		else
 			res[i].a = 255;
 		k += 3;
 		if (bpp == 32)
 			k++;
-		i++;
+		i--;
 	}
 	free(src);
 	return (res);

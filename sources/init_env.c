@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */ 
 /*   Created: 2018/04/11 11:22:10 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/05/10 12:50:35 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/05/10 15:50:16 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,9 @@ static t_env	*init_states(t_env *env)
 	env->states.view.x = 0;
 	env->states.view.y = 0;
 	env->states.view.z = -2.0;
+	env->states.model.x = 0;
+	env->states.model.y = 0;
+	env->states.model.z = 0.0;
 	env->states.colors.x = 0.0;
 	env->states.colors.y = 1.0;
 	env->states.colors.z = 0.0;

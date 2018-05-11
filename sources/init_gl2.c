@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */ 
 /*   Created: 2018/04/11 11:22:10 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/05/10 13:24:18 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/05/11 22:56:05 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ t_env	*init_textures(t_env *env)
 
 	glGenTextures(1, &env->texture);
 	glBindTexture(GL_TEXTURE_2D, env->texture);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, env->image.width,\
-		env->image.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, env->image.content);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, env->image.height,\
+		env->image.width, 0, GL_RGBA, GL_UNSIGNED_BYTE, env->image.content);
 	glGenerateMipmap(GL_TEXTURE_2D);
 	err = glGetError();
 	if (err != GL_NO_ERROR)
