@@ -15,7 +15,7 @@
 t_env			*ft_get_env(void)
 {
 	static t_env	*env = NULL;
-	
+
 	if (env == NULL)
 		env = (t_env *)malloc(sizeof(t_env));
 	return (env);

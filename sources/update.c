@@ -67,7 +67,6 @@ void			update(t_env *env)
 	static size_t	frame = 0;
 	t_update		u;
 
-	
 	env = key_actions(env);
 	clear(env, &u);
 	env = init_values(env, &u);
@@ -75,11 +74,5 @@ void			update(t_env *env)
 	glDrawArrays(GL_TRIANGLES, 0, env->vertices.size);
 	glfwSwapBuffers(env->win);
 	glfwPollEvents();
-	GLuint err = glGetError();
-	if (err != GL_NO_ERROR)
-	{
-		ft_putnbr_fd(err, STDERR_FILENO);
-		ft_putendl_fd("", STDERR_FILENO);
-	}
 	frame += 1;
 }

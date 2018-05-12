@@ -12,7 +12,7 @@
 
 #include "ft_scop.h"
 
-static void	gl_err(const char *str)
+static void		gl_err(const char *str)
 {
 	const GLint	err = glGetError();
 
@@ -40,7 +40,7 @@ static char		*get_shader_str(const char *path)
 	return (str);
 }
 
-GLuint	init_shader(const char *path, GLenum type)
+GLuint			init_shader(const char *path, GLenum type)
 {
 	GLint	err;
 	GLuint	shader_id;
@@ -55,7 +55,6 @@ GLuint	init_shader(const char *path, GLenum type)
 	glGetShaderiv(shader_id, GL_COMPILE_STATUS, &err);
 	if (err != GL_TRUE)
 	{
-		//REMOVE
 		GLint logsize = 0;
 		glGetShaderiv(shader_id, GL_INFO_LOG_LENGTH, &logsize);
 		GLchar *str = (GLchar *)malloc(sizeof(GLchar) * logsize);
@@ -66,7 +65,7 @@ GLuint	init_shader(const char *path, GLenum type)
 	return (shader_id);
 }
 
-GLuint	init_program(void)
+GLuint			init_program(void)
 {
 	GLuint vertex;
 	GLuint fragment;
@@ -81,9 +80,8 @@ GLuint	init_program(void)
 	return (program);
 }
 
-t_env	*init_buffers(t_env *env)
+t_env			*init_buffers(t_env *env)
 {
-	GLint	err;
 	GLint	col_loc;
 	GLint	pos_loc;
 	GLint	tex_loc;
@@ -97,15 +95,15 @@ t_env	*init_buffers(t_env *env)
 	col_loc = glGetAttribLocation(env->program, "vCol");
 	pos_loc = glGetAttribLocation(env->program, "vPos");
 	tex_loc = glGetAttribLocation(env->program, "vTex");
-    glEnableVertexAttribArray(pos_loc);
-    glVertexAttribPointer(pos_loc, 4, GL_FLOAT, GL_FALSE,
-                          sizeof(t_vec4), (void*) 0);
-    glEnableVertexAttribArray(col_loc);
-    glVertexAttribPointer(col_loc, 4, GL_FLOAT, GL_FALSE,
-                          sizeof(t_vec4), (void*) (sizeof(GLfloat) * 4));
-    glEnableVertexAttribArray(tex_loc);
-    glVertexAttribPointer(tex_loc, 2, GL_FLOAT, GL_FALSE,
-                          sizeof(t_vec4), (void*) (sizeof(GLfloat) * 8));
+	glEnableVertexAttribArray(pos_loc);
+	glVertexAttribPointer(pos_loc, 4, GL_FLOAT, GL_FALSE,
+		sizeof(t_vec4), (void*) 0);
+	glEnableVertexAttribArray(col_loc);
+	glVertexAttribPointer(col_loc, 4, GL_FLOAT, GL_FALSE,
+		sizeof(t_vec4), (void*) (sizeof(GLfloat) * 4));
+	glEnableVertexAttribArray(tex_loc);
+	glVertexAttribPointer(tex_loc, 2, GL_FLOAT, GL_FALSE,
+		sizeof(t_vec4), (void*) (sizeof(GLfloat) * 8));
 	gl_err("Could not build buffers.");
 	return (env);
 }

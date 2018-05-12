@@ -16,7 +16,7 @@ int			main(int ac, char **av)
 {
 	t_env		*env;
 	char		*obj_path;
-	static char		*tga_path = "assets/cat.tga";
+	static char	*tga_path = "assets/cat.tga";
 
 	if (ac < 2)
 		error("usage", "ft_scop file.obj [texture.tga]");
@@ -26,9 +26,7 @@ int			main(int ac, char **av)
 		tga_path = av[2];
 	env = init_env(obj_path, tga_path);
 	while (!glfwWindowShouldClose(env->win))
-	{
 		update(env);
-	}
 	glfwDestroyWindow(env->win);
 	glfwTerminate();
 	return (0);

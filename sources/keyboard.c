@@ -12,10 +12,14 @@
 
 #include "ft_scop.h"
 
-void			key_callback(GLFWwindow *win, int key, int scancode, int act, int mods)
+void			key_callback(GLFWwindow *win, int key, int scancode, int act,\
+int mods)
 {
 	t_env	*env;
 
+	(void)win;
+	(void)scancode;
+	(void)mods;
 	env = ft_get_env();
 	if (key == GLFW_KEY_ESCAPE)
 		exit(EXIT_SUCCESS);

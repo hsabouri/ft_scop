@@ -31,7 +31,7 @@ static size_t	sizeit(t_quads quads)
 	return (res);
 }
 
-t_tris		triangulate(t_parsed *parsed)
+t_tris			triangulate(t_parsed *parsed)
 {
 	size_t	iterator;
 	t_tris	res;
@@ -68,22 +68,6 @@ t_vertices		scale(t_vertices *src, GLfloat amount)
 	{
 		current = src->content + iterator;
 		*current = vec_uniform_scale(*current, amount);
-		iterator++;
-	}
-	return (*src);
-}
-
-t_vertices		center(t_vertices *src)
-{
-	const t_vec4	center = find_center(src);
-	t_vec4			*current;
-	size_t			iterator;
-
-	iterator = 0;
-	while (iterator < src->size)
-	{
-		current = src->content + iterator;
-		*current = vec_trans(*current, -center.x, -center.y, -center.z);
 		iterator++;
 	}
 	return (*src);

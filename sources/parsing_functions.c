@@ -36,6 +36,7 @@ t_vec4	parse_vec4(const char *line, size_t linec)
 		error_line(linec, "PARSER", "Vertice has not enough coordinates.");
 	if (count == 3)
 		res.w = 1.0;
+	free(line_c);
 	return (res);
 }
 
@@ -63,5 +64,6 @@ t_quad	parse_quad(const char *line, size_t linec)
 		error_line(linec, "PARSER", "Face has not enough indexes.");
 	if (count == 3)
 		res.d = -1;
+	free(line_c);
 	return (res);
 }

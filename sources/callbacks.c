@@ -14,6 +14,7 @@
 
 static void	close_callback(GLFWwindow *win)
 {
+	(void)win;
 	ft_putendl("closing");
 }
 

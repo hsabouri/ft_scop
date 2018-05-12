@@ -8,6 +8,8 @@ uniform vec4	Start;
 uniform vec4	End;
 uniform sampler2D	Texture;
 
+out vec4	out_color;
+
 void main(void)
 {
 	vec4	tmp;
@@ -16,5 +18,5 @@ void main(void)
 
 	tmp = mix(color, Start + (End - Start) * z, State.y);
 	tmp2 = texture(Texture, tex);
-	gl_FragColor = mix(tmp, tmp2, State.z);
+	out_color = mix(tmp, tmp2, State.z);
 }

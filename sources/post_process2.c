@@ -13,7 +13,23 @@
 #include "ft_scop.h"
 #include "vec.h"
 
-t_env	expend(t_env *env)
+t_vertices	center(t_vertices *src)
+{
+	const t_vec4	center = find_center(src);
+	t_vec4			*current;
+	size_t			iterator;
+
+	iterator = 0;
+	while (iterator < src->size)
+	{
+		current = src->content + iterator;
+		*current = vec_trans(*current, -center.x, -center.y, -center.z);
+		iterator++;
+	}
+	return (*src);
+}
+
+t_env		expend(t_env *env)
 {
 	t_vertices		new_verts;
 	const t_vec4	*vertices = env->vertices.content;
@@ -45,7 +61,7 @@ t_env	expend(t_env *env)
 	return (*env);
 }
 
-GLfloat	find_longest(t_vertices *vertices)
+GLfloat		find_longest(t_vertices *vertices)
 {
 	const t_vec4	*verts_t = vertices->content;
 	GLfloat			longest;
@@ -82,7 +98,7 @@ t_vertices	reduce(t_vertices *vertices)
 	return (*vertices);
 }
 
-t_env	assign_texture_coords(t_env *env)
+t_env		assign_texture_coords(t_env *env)
 {
 	size_t	i;
 	t_vec4	*vertices;
