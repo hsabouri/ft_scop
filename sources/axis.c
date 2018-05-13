@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/29 12:07:51 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/04/29 12:28:09 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/05/13 18:48:40 by oadib            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_vec4	y_axis(t_vec4 vec, GLfloat amount)
 
 	res = vec;
 	res.x = vec.x * cos_t + vec.z * sin_t;
-	res.z = -vec.x * sin_t + vec.z * cos_t;;
+	res.z = -vec.x * sin_t + vec.z * cos_t;
 	return (res);
 }
 

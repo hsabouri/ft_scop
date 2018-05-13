@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 11:08:53 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/05/09 20:56:41 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/05/13 18:55:41 by oadib            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #ifdef __APPLE__
 
 typedef void*	GLADloadproc;
-void	gladLoadGLLoader(GLADloadproc addr)
+void			gladLoadGLLoader(GLADloadproc addr)
 {
 	(void)addr;
 }
@@ -42,11 +42,11 @@ GLFWwindow		*init_window(void)
 	if (!win)
 		error("GLFW", "Failed to initilize window.");
 	glfwMakeContextCurrent(win);
-    gladLoadGLLoader((GLADloadproc) glfwGetProcAddress);
+	gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 	glfwSwapInterval(1);
 	glfwSetInputMode(win, GLFW_STICKY_KEYS, 1);
 	glfwSetKeyCallback(win, key_callback);
 	set_error_callbacks();
 	set_callbacks(win);
- 	return (win);
+	return (win);
 }

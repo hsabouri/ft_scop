@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/27 16:46:47 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/05/11 23:06:28 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/05/13 19:11:34 by oadib            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_env		expend(t_env *env)
 	const t_vec4	*vertices = env->vertices.content;
 	t_tri			*indexes;
 	size_t			i;
-	
+
 	new_verts.size = env->indexes.size * 3;
 	new_verts.content = (t_vec4 *)malloc(sizeof(t_vec4) * new_verts.size);
 	indexes = env->indexes.content;
@@ -43,16 +43,10 @@ t_env		expend(t_env *env)
 	while (i < env->indexes.size)
 	{
 		new_verts.content[i * 3 + 0] = vertices[indexes[i].a];
-		new_verts.content[i * 3 + 0].tex.u = 0;
-		new_verts.content[i * 3 + 0].tex.v = 0;
 		indexes[i].a = i * 3 + 0;
 		new_verts.content[i * 3 + 1] = vertices[indexes[i].b];
-		new_verts.content[i * 3 + 1].tex.u = 0.5;
-		new_verts.content[i * 3 + 1].tex.v = 1;
 		indexes[i].b = i * 3 + 1;
 		new_verts.content[i * 3 + 2] = vertices[indexes[i].c];
-		new_verts.content[i * 3 + 2].tex.u = 1;
-		new_verts.content[i * 3 + 2].tex.v = 0;
 		indexes[i].c = i * 3 + 2;
 		i++;
 	}

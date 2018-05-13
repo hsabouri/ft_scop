@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 10:35:42 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/05/08 14:08:49 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/05/13 19:08:17 by oadib            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void		tokens(const char *line, t_parsed *parsed, size_t linec)
 	}
 }
 
-t_parsed		parse(const char *path)
+t_parsed	parse(const char *path)
 {
 	int			fd;
 	t_parsed	parsed;

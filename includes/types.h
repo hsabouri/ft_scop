@@ -6,19 +6,17 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 16:48:30 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/05/06 14:20:51 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/05/13 18:46:48 by oadib            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef  TYPES
-# define TYPES
-
+#ifndef TYPES_H
+# define TYPES_H
 # ifdef OSX
 #  include <OpenGL/gl3.h>
 #  define GLFW_INCLUDE_NONE
 # endif
 # include <GLFW/glfw3.h>
-
 # define MATSIZE 16
 
 typedef enum	e_axis

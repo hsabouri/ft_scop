@@ -6,13 +6,12 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 11:19:46 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/05/10 15:45:49 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/05/13 19:09:15 by oadib            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef  FT_SCOP
-# define FT_SCOP
-
+#ifndef FT_SCOP_H
+# define FT_SCOP_H
 # ifdef __APPLE__
 #  include <OpenGL/gl3.h>
 #  define GLFW_INCLUDE_NONE
@@ -20,12 +19,10 @@
 #  include <glad/glad.h>
 # endif
 # include <GLFW/glfw3.h>
-
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <stdio.h>
-
 # include "parser.h"
 # include "types.h"
 # include "vec.h"
@@ -33,19 +30,24 @@
 # include <math.h>
 # include <time.h>
 # include <stdlib.h>
-
 # define YELLOW (t_color) {btof(244), btof(202), btof(78), 1.0}
 # define RED (t_color) {btof(224), btof(26), btof(59), 1.0}
 # define BLUE (t_color) {btof(88), btof(4), btof(255), 1.0}
 # define BLACK (t_color) {0.0, 0.0, 0.0, 1.0}
 # define WHITE (t_color) {1.0, 1.0, 1.0, 1.0}
-
-# define BYNOME(a, b, c, d, e, f) (t_color) {btof(a), btof(b), btof(c), 1.0},\
-				(t_color) {btof(d), btof(e), btof(f), 1.0}
-
 # define COLOR(a, b, c) (t_color) {btof(a), btof(b), btof(c), 1.0}
-
 # define ROT_SPEED M_PI/128
+
+typedef struct	s_update
+{
+	t_mat4		proj_mat;
+	t_mat4		view_mat;
+	t_mat4		model_mat;
+	t_color		start;
+	t_color		end;
+	int			width;
+	int			height;
+}				t_update;
 
 typedef struct	s_loc
 {
@@ -112,7 +114,8 @@ t_vertices		rotate(t_vertices *src, t_axis axis, GLfloat amount);
 t_vertices		reduce(t_vertices *vertices);
 t_env			expend(t_env *env);
 t_color			get_color(t_color start, t_color end, int pos, int max);
-t_mat4			get_proj_mat(GLfloat ratio, GLfloat alpha, GLfloat near, GLfloat far);
+t_mat4			get_proj_mat(GLfloat ratio, GLfloat alpha, GLfloat near,\
+				GLfloat far);
 
 float			btof(unsigned char n);
 

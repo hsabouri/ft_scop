@@ -6,22 +6,11 @@
 /*   By: hsabouri <hsabouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 13:22:27 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/05/11 23:11:32 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/05/13 19:09:55 by oadib            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_scop.h"
-
-typedef struct	s_update
-{
-	t_mat4		proj_mat;
-	t_mat4		view_mat;
-	t_mat4		model_mat;
-	t_color		start;
-	t_color		end;
-	int			width;
-	int			height;
-}				t_update;
 
 static void		clear(t_env *env, t_update *u)
 {
@@ -29,22 +18,22 @@ static void		clear(t_env *env, t_update *u)
 	glfwGetFramebufferSize(env->win, &u->width, &u->height);
 	glViewport(0, 0, u->width, u->height);
 	u->proj_mat = get_proj_mat((float)u->width / (float)u->height,\
-							   M_PI / 2, -1, 1000.0);
+		M_PI / 2, -1, 1000.0);
 }
 
 static void		uniforms(t_env *env, t_update *u)
 {
 	glUniformMatrix4fv(env->loc.proj, 1, GL_FALSE,\
-		(const GLfloat*) &u->proj_mat);
+		(const GLfloat*)&u->proj_mat);
 	glUniformMatrix4fv(env->loc.model, 1, GL_FALSE,\
-		(const GLfloat*) &u->model_mat);
+		(const GLfloat*)&u->model_mat);
 	glUniformMatrix4fv(env->loc.view, 1, GL_FALSE,\
-		(const GLfloat*) &u->view_mat);
+		(const GLfloat*)&u->view_mat);
 	glUseProgram(env->program);
 	glUniform4f(env->loc.state, env->states.colors.x, env->states.colors.y,\
 				env->states.colors.z, 1.0);
-	glUniform4fv(env->loc.start, 1, (GLfloat*) &u->start);
-	glUniform4fv(env->loc.end, 1, (GLfloat*) &u->end);
+	glUniform4fv(env->loc.start, 1, (GLfloat*)&u->start);
+	glUniform4fv(env->loc.end, 1, (GLfloat*)&u->end);
 	glUniform1i(env->loc.texture_mode, env->states.texture_mod);
 }
 

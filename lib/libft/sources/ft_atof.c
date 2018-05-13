@@ -6,13 +6,13 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/25 13:17:41 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/04/25 15:29:53 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/05/13 19:18:20 by oadib            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int ft_sign(const char *str)
+static int		ft_sign(const char *str)
 {
 	int		sign;
 	size_t	i;
@@ -26,7 +26,7 @@ static int ft_sign(const char *str)
 	return (sign);
 }
 
-static double first_part(const char *str, double res, int sign)
+static double	first_part(const char *str, double res, int sign)
 {
 	size_t	i;
 
@@ -40,7 +40,7 @@ static double first_part(const char *str, double res, int sign)
 	return (res);
 }
 
-double ft_atof(const char *number)
+double			ft_atof(const char *number)
 {
 	double	res;
 	size_t	i;

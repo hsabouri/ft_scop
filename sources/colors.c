@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/27 16:46:47 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/05/04 22:02:52 by hsabouri         ###   ########.fr       */
+/*   Updated: 2018/05/13 18:56:28 by oadib            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 float			btof(unsigned char n)
 {
-	const static float	step = 1.0/255.0;
+	const static float	step = 1.0 / 255.0;
 
 	return (step * n);
 }
