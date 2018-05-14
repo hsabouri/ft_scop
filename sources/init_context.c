@@ -6,21 +6,11 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 11:08:53 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/05/13 18:55:41 by oadib            ###   ########.fr       */
+/*   Updated: 2018/05/14 11:29:22 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_scop.h"
-
-#ifdef __APPLE__
-
-typedef void*	GLADloadproc;
-void			gladLoadGLLoader(GLADloadproc addr)
-{
-	(void)addr;
-}
-
-#endif
 
 static void		init_version(void)
 {

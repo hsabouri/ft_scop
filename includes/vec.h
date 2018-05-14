@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/28 12:11:38 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/05/13 19:19:26 by oadib            ###   ########.fr       */
+/*   Updated: 2018/05/14 11:34:59 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,9 @@
 # define VEC_H
 # include "types.h"
 # define EPSILON 0.000000119f
-# define ROTX(SIN, COS) (t_mat4){\
-	1, 0, 0, 0,\
-	0, COS, SIN, 0,\
-	0, -SIN, COS, 0,\
-	0, 0, 0, 1}
-# define ROTY(SIN, COS) (t_mat4){\
-	COS, 0, -SIN, 0,\
-	0, 1, 0, 0,\
-	SIN, 0, COS, 0,\
-	0, 0, 0, 1}
-# define ROTZ(SIN, COS) (t_mat4){\
-	COS, SIN, 0, 0, \
-	-SIN, COS, 0, 0,\
-	0, 0, 1, 0,\
-	0, 0, 0, 1}
+# define ROTX(S, C) (t_mat4){1, 0, 0, 0, 0, C, S, 0, 0, -S, C, 0, 0, 0, 0, 1}
+# define ROTY(S, C) (t_mat4){C, 0, -S, 0, 0, 1, 0, 0, S, 0, C, 0, 0, 0, 0, 1}
+# define ROTZ(S, C) (t_mat4){C, S, 0, 0, -S, C, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1}
 # define MAT_UNIT(s) (t_mat4){s, 0, 0, 0, 0, s, 0, 0, 0, 0, s, 0, 0, 0, 0, 1}
 
 typedef union	u_mem_rape

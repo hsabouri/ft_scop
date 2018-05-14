@@ -6,7 +6,7 @@
 /*   By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 11:19:46 by hsabouri          #+#    #+#             */
-/*   Updated: 2018/05/13 19:09:15 by oadib            ###   ########.fr       */
+/*   Updated: 2018/05/14 11:29:55 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,11 @@
 # define WHITE (t_color) {1.0, 1.0, 1.0, 1.0}
 # define COLOR(a, b, c) (t_color) {btof(a), btof(b), btof(c), 1.0}
 # define ROT_SPEED M_PI/128
+
+# ifdef __APPLE__
+#  define GLADloadproc void*
+#  define gladLoadGLLoader(addr) (void)addr
+# endif
 
 typedef struct	s_update
 {
