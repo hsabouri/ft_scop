@@ -6,7 +6,7 @@
 #    By: hsabouri <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/11 11:06:31 by hsabouri          #+#    #+#              #
-#    Updated: 2018/05/09 20:57:30 by hsabouri         ###   ########.fr        #
+#    Updated: 2018/05/14 11:41:11 by hsabouri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,6 +88,8 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c $(INC)
 	$(CC) -o $@ -c $< $(CFLAGS)
 
 libs:
+	cmake lib/GLFW
+	$(MAKE) -s -C lib/GLFW
 	$(MAKE) -s -C $(LIBFTDIR)
 
 clean:
